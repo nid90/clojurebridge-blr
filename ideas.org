@@ -8,6 +8,15 @@ Something along the lines of: https://aphyr.com/posts/301-clojure-from-the-groun
 - There's many languages, we have chosen Clojure
 - Clojure is incredibly easy to learn
 
+
+** Teacher Notes
+
+- Mention that we have people with varied abilities:
+  * 0 programming experience
+  * little math experience
+  * some programming experience
+  * advanced
+
 * REPL
 
 - a read-eval-print-loop
