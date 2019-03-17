@@ -22,3 +22,13 @@ Something along the lines of: https://aphyr.com/posts/301-clojure-from-the-groun
 - a read-eval-print-loop
 - a REPL is a playground, unlike traditional programming where you write your code and evaluate it later
 - a REPL allows you play with your language and iteratively build things with instant feedback
+
+* Types and functions
+- nouns and verbs
+- LISP originally stood for LISt Processing, and lists are still at the core of the language
+- Clojure's basic syntax is list
+- Every language has a type system - a particular way of organizing nouns into types, figuring out which verbs make sense on which types, and relating types to one another
+- Clojure's type system: strong (operations on improper types are not allowed) and dynamic (these checks are enforced when the program runs not when it compiles)
+
+* Using quil (https://github.com/quil/quil)
+- start with a blank canvas
