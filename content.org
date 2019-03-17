@@ -1,0 +1,111 @@
+* Preface
+- First off, I would like to thank all these people and groups for having created great content for clojure workshops.
+  - Aditya Athale
+  - Kyle Kingsbury (aphyr)
+  - ClojureBridge Berlin and London
+
+- We have taken most of our ideas for this workshop from the content these folks have created.
+
+- This workshop is aimed specifically at women. Why? In the past 7
+  years of my engineering career I have seen the disparity in gender
+  ratio at all the companies I have worked with. In some teams, I was
+  the only female developer. In some teams, I was the only female. I
+  have never had a female mentor before. But, I have also seen
+  companies change, grow, become more aware of this lacking, and
+  find ways to fix it. This is a small attempt towards that. Getting more
+  females to learn programming, learn Clojure and do awesome things
+  that comes with ability to command a computer.
+
+- To quote aphyr - "So before we begin, I want to reinforce that you
+  can program, that you can do math, that you can design car
+  suspensions and fire suppression systems and spacecraft control
+  software and distributed databases, regardless of what your
+  classmates and media and even fellow engineers think."
+
+* Structure
+** What is programming
+- Programming is the process of creating a set of instructions that tell a computer how to perform a task. Programming can be done using a variety of computer "languages".
+- There are many such languages to choose from. Some of the other languages you might have heard of (or will hear of!) are C, JavaScript, Python, and Java.
+- And Clojure, of course.
+- Every program has two readers: the computer, and the human. Our job, as programmers, is to communicate clearly to both.
+
+
+** What is Clojure
+- Clojure is a modern dialect of a very old family of computer languages, called Lisp.
+- It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from CLojure (you can ignore this for now).
+
+
+** Why Clojure
+- Clojure is *simple*. That’s not to say it’s not powerful; it is. The
+  number of concepts you have to know to program in Clojure is very
+  small, however, and easy to grasp. Clojure grows with you as you
+  learn it, and you can be very productive with a small subset of the
+  language.
+- Clojure is *all-purpose*. Some languages have a specific
+  focus. JavaScript, for example, was traditionally used only in web
+  pages (although that’s changed somewhat). Objective-C is used mainly
+  for iPhone apps. We’re going to make a drawing application today,
+  but you can use Clojure for any sort of application easily.
+- Clojure is *fun*. That’s a matter of opinion, of course, but we think
+  it holds true. I hope that during this course you experience the joy
+  of seeing a Clojure program come together and do something powerful
+  and surprising.
+
+
+** Lesson 0 (REPL)
+- REPL stands for Read, Evaluate, Print Loop
+- Many programming languages, including Clojure, have a way to execute code interactively so you get instant feedback.
+- In other words, the code is read, then it is evaluated, then the result is printed, and you begin again–thus, a loop.
+- let's start a REPL. and we can type and evaluate things as we go on learning them.
+- as a first thing, type `nil` in your REPL, and see what it returns.
+  - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
+
+- in any expression, you have nouns and verbs
+- nouns are things in the world
+  - these are the values that we pass to an expression, or what an expression evaluates to
+  - the values can be of different types
+  - most languages have some basic data types
+  - number, string (text), boolean (true/false)
+  - nil, true, 0, and "hi there!" are all different types of values
+
+- keywords
+  - clojure has a special type called keyword
+  - eg - :foo, :bar
+  - special because they are symbolic identifiers that evaluate to themselves
+
+- symbols
+  - identifiers that are used to refer to something else
+  - like there is a function called `inc` which is used to increment a number
+  - unlike 0, "hi", inc is a symbol
+  - when Clojure evaluates a symbol, it looks up that symbol’s meaning
+  - type inc in your REPL, you will get the meaning of what inc represents
+  - we can also refer to symbol itself without evaluating it - `'inc`
+  - the single quote ' escapes a sentence
+  - a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
+  - try: '123, '"foo", 'true
+  - quoting a value will return just the sa,e value back
+  - quoting a symbol will return that symbol unevaluated
+
+- functions are the verbs in prgramming
+  - given some values (arguments/parameters), they return a value
+
+** Lesson 1 (numbers, booleans and strings)
+
+** Lesson 2 (Syntax)
+- s-expressions or symbolic expressions
+- `(prn "Hello World")` ;; evauluate this
+- `(+ 3 4)`
+- all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+
+
+** Lesson 3 (lists)
+- map, filter, reduce
+
+** Lesson 4 (let, if, when)
+- if, let, when,
+
+** Lesson 5 (functions and composition of functions)
+
+- defn, fn
+
+** Lesson 6 (Immutability and Purity)
