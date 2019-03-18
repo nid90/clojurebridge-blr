@@ -60,6 +60,12 @@
 - as a first thing, type `nil` in your REPL, and see what it returns.
   - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
 
+** Lesson 1 (Syntax)
+- s-expressions or symbolic expressions
+- `(prn "Hello World")` ;; evauluate this
+- all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+- The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
+
 - in any expression, you have nouns and verbs
 - nouns are things in the world
   - these are the values that we pass to an expression, or what an expression evaluates to
@@ -89,15 +95,7 @@
 - functions are the verbs in prgramming
   - given some values (arguments/parameters), they return a value
 
-** Lesson 1 (numbers, booleans and strings)
-
-** Lesson 2 (Syntax)
-- s-expressions or symbolic expressions
-- `(prn "Hello World")` ;; evauluate this
-- `(+ 3 4)`
-- all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
-
-
+** Lesson 2 (numbers, booleans and strings)
 ** Lesson 3 (lists)
 - map, filter, reduce
 
