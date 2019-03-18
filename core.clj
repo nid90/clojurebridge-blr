@@ -11,3 +11,6 @@ inc
 'true
 '"foo"
 "foo"
+(class 3/4)
+(class nil)
+(class \c)

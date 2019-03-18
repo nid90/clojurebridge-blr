@@ -96,7 +96,30 @@
   - given some values (arguments/parameters), they return a value
 
 ** Lesson 2 (numbers, booleans and strings)
+- we have already covered what values/things are
+- 1, 2.5, nil, true, "hello"; these are all values
+- but as you can probably already tell, they are all different values
+- in other words - different types of values
+- types relate to each other. for example in math, both 1 and 2.5 are
+  numbers; but 1 is a natural number while 2.5 is real number
+- every language has a type system; a particular way of organizing
+  nouns into groups, figuring out which verbs make sense on which
+  types, and relating types to one another
+- Clojure's type system is:
+  - *strong* in that operations on improper types are simply not allowed
+  - *dynamic* because they are enforced when the program is run,
+    instead of when the program is first read by the computer (in
+    other words, at runtime vs compile time)
+List of types:
+1) nil
+2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
+3) Strings: text like "hey", "cats are so nice", "ありがとう"
+4) Characters: \a, \b, \c
+5) Keywords: :foo, :bar, :baz
+6) Symbols: 'foo
+
 ** Lesson 3 (lists)
+- lists are what they mean: a collection of things
 - map, filter, reduce
 
 ** Lesson 4 (let, if, when)
