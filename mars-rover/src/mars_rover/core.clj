@@ -4,63 +4,35 @@
 
 (def mars [500 500])
 (def mars-center (map #(/ % 2) mars))
-(def mars-center-x (nth mars-center 0))
-(def mars-center-y (nth mars-center 1))
+(def rover-move-by 5)
 (def directions [:N :E :W :S])
-(def rover-size 20)
-(def rover-in-the-middle-of-mars {:x1 mars-center-x
-                                  :y1 (- mars-center-y rover-size)
-                                  :x2 (- mars-center-x rover-size)
-                                  :y2 (+ mars-center-y rover-size)
-                                  :x3 (+ mars-center-x rover-size)
-                                  :y3 (+ mars-center-y rover-size)})
+(def shifts {:N [0 (- rover-move-by)]
+             :E [(- rover-move-by) 0]
+             :W [0 (- rover-move-by)]
+             :S [(- rover-move-by) 0]})
+(def rover-width  25)
+(def rover-height 50)
+(def rover-in-the-middle-of-mars {:x (nth mars-center 0)
+                                  :y (nth mars-center 1)
+                                  :direction (nth directions 0)})
 
 (defn setup []
   (q/frame-rate 30)
   {:rover rover-in-the-middle-of-mars})
 
-(defn draw-rover [{:keys [rover]}]
-  (q/triangle (:x1 rover) (:y1 rover)
-              (:x2 rover) (:y2 rover)
-              (:x3 rover) (:y3 rover)))
+(defn deploy-rover [{{:keys [x y] :as rover} :rover}]
+  (q/rect x y rover-width rover-height))
 
-(def rover-move-by 10)
+(defn move-rover [{{:keys [x y direction] :as rover} :rover}]
+  (assoc 
+    rover 
+    :x (+ x (first  (get shifts direction))) 
+    :y (+ y (second (get shifts direction)))
+    :direction direction))
 
-(defn move-rover [{:keys [rover]}]
-  {:x1 (:x1 rover)
-   :y1 (- (:y1 rover) rover-move-by)
-   :x2 (:x2 rover)
-   :y2 (- (:y2 rover) rover-move-by)
-   :x3 (:x3 rover)
-   :y3 (- (:y3 rover) rover-move-by)})
-
-(defn key-press [state e]
-  (condp = (:key e)
-    :up    (assoc state :rover (move-rover state))
-    :down  (assoc state :rover (move-rover state))
-    :left  (assoc state :rover (move-rover state))
-    :right (assoc state :rover (move-rover state))
-    state))
-
-(defn rotate-x [x y]
-  (- (* x (Math/cos 90))
-     (* y (Math/sin 90))))
-
-(defn rotate-y [x y]
-  (+ (* x (Math/sin 90))
-     (* y (Math/cos 90))))
-
-(defn turn-rover [{{:keys [x1 y1 x2 y2 x3 y3]} :rover}]
-  {:x1 (rotate-x x1 y1)
-   :y1 (rotate-y x1 y1)
-   :x2 (rotate-x x2 y2)
-   :y2 (rotate-y x2 y2)
-   :x3 (rotate-x x3 y3)
-   :y3 (rotate-y x3 y3)})
-
-(defn out-of-mars? [{:keys [rover]}]
-  (or (= (:x1 rover) 0)
-      (= (:y1 rover) 0)))
+(defn out-of-mars? [{{:keys [x y] :as rover} :rover}]
+  (or (= x 0)
+      (= y 0)))
 
 (defn update-state [state]
   (if (out-of-mars? state)
@@ -69,7 +41,12 @@
 
 (defn draw-state [state]
   (q/background 89 0 0)
-  (draw-rover state))
+  (deploy-rover state))
+
+(defn key-press [state e]
+  (condp = (:key e)
+    :up    (assoc state :rover (move-rover state))
+    state))
 
 (q/defsketch hello-quils
   :title "Squad of robotic rovers"
@@ -84,7 +61,6 @@
   :features [:keep-on-top]
   :key-pressed key-press
   
-
   ;; This sketch uses functional-mode middleware.
   ;; Check quil wiki for more info about middlewares and particularly
   ;; fun-mode.
