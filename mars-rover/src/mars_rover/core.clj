@@ -4,14 +4,17 @@
 
 (def mars [500 500])
 (def mars-center (map #(/ % 2) mars))
-(def rover-move-by 5)
+(def rover-move-by 2)
 (def directions [:N :E :W :S])
 (def shifts {:N [0 (- rover-move-by)]
-             :E [(- rover-move-by) 0]
-             :W [0 (- rover-move-by)]
-             :S [(- rover-move-by) 0]})
-(def rover-width  25)
-(def rover-height 50)
+             :E [(+ rover-move-by) 0]
+             :W [(- rover-move-by) 0]
+             :S [0 (+ rover-move-by)]})
+(def turns {:N {:right :E :left :W}
+            :E {:right :S :left :N}
+            :W {:right :N :left :S}
+            :S {:right :W :left :E}})
+(def rover-size 25)
 (def rover-in-the-middle-of-mars {:x (nth mars-center 0)
                                   :y (nth mars-center 1)
                                   :direction (nth directions 0)})
@@ -21,7 +24,7 @@
   {:rover rover-in-the-middle-of-mars})
 
 (defn deploy-rover [{{:keys [x y] :as rover} :rover}]
-  (q/rect x y rover-width rover-height))
+  (q/rect x y rover-size rover-size))
 
 (defn move-rover [{{:keys [x y direction] :as rover} :rover}]
   (assoc 
@@ -30,9 +33,16 @@
     :y (+ y (second (get shifts direction)))
     :direction direction))
 
+(defn turn-rover [{{:keys [direction] :as rover} :rover} turn]
+  (assoc
+    rover
+    :direction (get-in turns [direction turn])))
+
 (defn out-of-mars? [{{:keys [x y] :as rover} :rover}]
   (or (= x 0)
-      (= y 0)))
+      (= y 0)
+      (= x (nth mars 0))
+      (= y (nth mars 1))))
 
 (defn update-state [state]
   (if (out-of-mars? state)
@@ -46,6 +56,8 @@
 (defn key-press [state e]
   (condp = (:key e)
     :up    (assoc state :rover (move-rover state))
+    :left  (assoc state :rover (turn-rover state :left))
+    :right (assoc state :rover (turn-rover state :right))
     state))
 
 (q/defsketch hello-quils
