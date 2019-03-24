@@ -64,7 +64,13 @@
 - s-expressions or symbolic expressions
 - `(prn "Hello World")` ;; evauluate this
 - all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+- Notice the parentheses. Parentheses enclose instructions to the
+  computer in Clojure. A left parenthesis is the start of the
+  instruction, and a matching right parenthesis is the end of
+  enclosing instruction. Normally, Clojure code has a lot of nested
+  parentheses, or in other words, nested enclosing instructions.
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
+- Clojure uses whitespace to separate operands, and it treats commas as whitespace.
 
 - in any expression, you have nouns and verbs
 - nouns are things in the world
@@ -110,7 +116,7 @@
   - *dynamic* because they are enforced when the program is run,
     instead of when the program is first read by the computer (in
     other words, at runtime vs compile time)
-List of types:
+List of basic types:
 1) nil
 2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
 3) Strings: text like "hey", "cats are so nice", "ありがとう"
@@ -120,13 +126,27 @@ List of types:
 
 ** Lesson 3 (lists)
 - lists are what they mean: a collection of things
-- map, filter, reduce
+- `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
+- these are all collections of different types
+- but clojure doesn't put any restrictions on the type of data you can put in a collection
+- `[1 :a "a" 2 :b]` is also a valid collection
+- there are different types of collections:
+1. lists - `(1 2 3)
+2. vectors - [1 2 3]
+3. hash maps - {:a 1 :b 2 :c 3}
+4. sets - #{1 2 3}
+- uniform way to use all of these collections together
+- some built in fns which make working with collections easy
+- conj - adds an element to the collection
+- map - goes over the collection and applies a function over all elements in the collection returning a new collection
 
-** Lesson 4 (let, if, when)
-- if, let, when,
-
-** Lesson 5 (functions and composition of functions)
+** lesson 4 (Functions)
+-
+** Lesson 5 - def, defn, let
+** Lesson 6 - control flow
+- if, when, do
+** Lesson 7 (functions and composition of functions)
 
 - defn, fn
 
-** Lesson 6 (Immutability and Purity)
+** Lesson 8 (Immutability and Purity)
