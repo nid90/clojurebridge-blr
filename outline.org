@@ -2,9 +2,12 @@ The workshop will be conducted over two days.
 
 First Day - Installation and REPL
 
-We will go over installation on IDEs and setup of develepment environment on all attendees laptops.
-We will be using NightCode (https://sekao.net/nightcode/) which should work out of the box on most OS.
+We will go over installation on IDEs and setup of develepment environment on all attendees laptops. We'll use NightCode (https://sekao.net/nightcode) which should work out of the box on most OSes.
+
+Once NightCode is setup, one can download this repository on their machines and open it in NightCode. The directory contains a file called *bridge.clj* which can then be opened up with the *InstaREPL* feature of NightCode. InstaREPL automatically evaluates every expression in the file on the left-hand pane. This file has some very basic opening content that one can evaluate, we'll build upon it as we go through the lessons.
+
 After installation, we will go over the following topics on the first day:
 1) What is programming
 2) What is Clojure
 3) Why did we choose Clojure
+4) Taster into a few Clojure things on the InstaREPL
