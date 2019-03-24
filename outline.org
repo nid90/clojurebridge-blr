@@ -1,13 +1,46 @@
 The workshop will be conducted over two days.
 
-First Day - Installation and REPL
+**** First Day - Installation and REPL [1.5 hours | 6:30 PM to 8:00 PM]
 
-We will go over installation on IDEs and setup of develepment environment on all attendees laptops. We'll use NightCode (https://sekao.net/nightcode) which should work out of the box on most OSes.
+We will go over installation on IDEs and setup of development environment on all attendees laptops. We'll use NightCode (https://sekao.net/nightcode) which should work out of the box on most OSes.
 
-Once NightCode is setup, one can download this repository on their machines and open it in NightCode. The directory contains a file called *bridge.clj* which can then be opened up with the *InstaREPL* feature of NightCode. InstaREPL automatically evaluates every expression in the file on the left-hand pane. This file has some very basic opening content that one can evaluate, we'll build upon it as we go through the lessons.
+Once NightCode is setup, one can [[https://github.com/nid90/clojurebridge-blr/archive/master.zip][download]] this repository on their machines and open it in NightCode. The directory contains a file called *bridge.clj* which can then be opened up with the *InstaREPL* feature of NightCode. InstaREPL automatically evaluates every expression in the file on the left-hand pane. This file has some very basic opening content that one can evaluate, we'll build upon it as we go through the lessons.
 
 After installation, we will go over the following topics on the first day:
-1) What is programming
-2) What is Clojure
-3) Why did we choose Clojure
-4) Taster into a few Clojure things on the InstaREPL
+1. What is programming
+2. What is Clojure
+3. Why did we choose Clojure
+4. Taster into a few Clojure things on the InstaREPL
+
+**** Second Day - Learning Clojure [7 hours | 10:30 AM to 5:30 PM]
+
+First off, we will have the teachers do a quick double check for everyone's IDE and REPL setup from last evening.
+
+The second day will be crash course in Clojure. We will divide the day into two parts - learning and doing.
+
+***** Learning [3 hours | 10:30 AM - 1:30 PM]
+In the learning section, we will go over the basics of Clojure in a presentation style while doing exercises as we come across them in the REPL. We have broken down the content into the following chapters:
+1. Understanding the REPL [10 mins]
+2. Syntax, or the anatomy of an s-expression [15 mins]
+3. Simple data types - string, bool and numbers (infix vs. prefix notation) [20 mins]
+4. Special data types - symbols and keywords (introduce def) [20 mins]
+5. Functions I (built-in fns) [15 mins]
+6. Sequence / Collection types and associated functions [30 mins]
+7. Functions II (introduce defn, fn et al) [20 mins]
+8. Context and bindings (let) [20 mins]
+9. Control flow and logic (if, when, do) [20 mins]
+10. Composition of functions [15 mins]
+
+***** Lunch [45 mins | 1:30 PM - 2:15 PM]
+
+***** Doing [3 hours | 2:30 PM to 5:30 PM]
+This section will start with one common first Clojure program written by all together - drawing lines in Quil.
+[[https://github.com/quil/quil][Quil]] is a simple and powerful DSL for drawing and creating interactive animations.
+
+The instructions for creating the first program are [[https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md][here]].
+
+Once everyone is comfortable with writing a basic Quil program, we will break into smaller groups with one or more teachers per group and solve [[https://gist.github.com/kitallis/9ba1947cb4628ff9f834ad13618c3746][the Mars Rover exercise in Quil]]
+
+A sample solution is provided [[https://github.com/nid90/clojurebridge-blr/tree/master/mars-rover][here]]. It is structured and commented inline in a way where it starts from basic building blocks to the final solution. This solution is a work in progress as of now, but will be done in a couple of days.
+
+
