@@ -37,4 +37,4 @@ Something along the lines of: https://aphyr.com/posts/301-clojure-from-the-groun
 - draw random shapes
 
 ** Mars Rover Problem
-- possible solution - https://gist.github.com/kitallis/7390133
+- possible solution - https://github.com/nid90/clojurebridge-blr/tree/master/mars-rover
