@@ -63,7 +63,9 @@
 
 ** Syntax, or anatomy of s-expressions
 - s-expressions or symbolic expressions
-- `(prn "Hello World")` ;; evauluate this
+#+BEGIN_SRC clojure
+(prn "Hello World") ;; evauluate this
+#+END_SRC
 - all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
 - Notice the parentheses. Parentheses enclose instructions to the
   computer in Clojure. A left parenthesis is the start of the
@@ -132,13 +134,24 @@ List of basic types:
 
 - def
   - we use def to bind a symbol to its value
-  - `(def chosen-one "Harry Potter")`
+#+BEGIN_SRC clojure
+(def chosen-one "Harry Potter")
+#+END_SRC
   - here, we have bound the symbol 'chosen-one to the string "Harry Potter"
   - If we had to type the same values over and over, it would be very
     hard to write a program. So, we bind them to symbols so we
     can refer to them in a way we can remember.
 
 ** Functions I (built-in fns)
+- functions we have seen so far
+#+BEGIN_SRC clojure
+(+ 1 2)
+(str "this is a function " "that combines two strings")
+(prn "this function prints whatever you give it")
+(inc 42)
+#+END_SRC
+- these are some of the function pre-defined in clojure
+-
 ** Sequence / Collection types and associated functions
 - lists are what they mean: a collection of things
 - `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
