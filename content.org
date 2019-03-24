@@ -300,7 +300,14 @@ List of basic types:
 
 - because there is only one path to take, when takes any number of expressions, and evaluates them only when the predicate is truthy. If the predicate evaluates to nil or false, when does not evaluate its body, and returns nil.
 
-- exercise: Using the control flow constructs we’ve learned, write a schedule function which, given an hour of the day, returns what you’ll be doing at that time. (schedule 18), for us, returns :dinner
+
+*** exercise
+
+Using the control flow constructs we’ve learned, write a schedule function which, given an hour of the day, returns what you’ll be doing at that time.
+
+#+begin_src clojure
+(schedule 18) ;; for us, returns :dinner
+#+end_src
 
 ** Composition of functions
 
