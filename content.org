@@ -33,7 +33,8 @@
 ** What is Clojure
 - Clojure is a modern dialect of a very old family of computer languages, called Lisp.
 - It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from CLojure (you can ignore this for now).
-
+- what can you do in Clojure?
+- you can create web things, mobile things, sketch things
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
@@ -72,6 +73,10 @@
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
 - Clojure uses whitespace to separate operands, and it treats commas as whitespace.
 
+- All Clojure code is written in a uniform structure. Clojure recognizes two kinds of structures:
+1. Literal representations of data structures (like numbers, strings, maps, and vectors)
+2. expressions
+
 - in any expression, you have nouns and verbs
 - nouns are things in the world
   - these are the values that we pass to an expression, or what an expression evaluates to
@@ -79,24 +84,6 @@
   - most languages have some basic data types
   - number, string (text), boolean (true/false)
   - nil, true, 0, and "hi there!" are all different types of values
-
-- keywords
-  - clojure has a special type called keyword
-  - eg - :foo, :bar
-  - special because they are symbolic identifiers that evaluate to themselves
-
-- symbols
-  - identifiers that are used to refer to something else
-  - like there is a function called `inc` which is used to increment a number
-  - unlike 0, "hi", inc is a symbol
-  - when Clojure evaluates a symbol, it looks up that symbol’s meaning
-  - type inc in your REPL, you will get the meaning of what inc represents
-  - we can also refer to symbol itself without evaluating it - `'inc`
-  - the single quote ' escapes a sentence
-  - a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
-  - try: '123, '"foo", 'true
-  - quoting a value will return just the sa,e value back
-  - quoting a symbol will return that symbol unevaluated
 
 - functions are the verbs in prgramming
   - given some values (arguments/parameters), they return a value
@@ -124,6 +111,26 @@ List of basic types:
 5) Keywords: :foo, :bar, :baz
 6) Symbols: 'foo
 
+
+** Symbold and keywords
+- keywords
+  - clojure has a special type called keyword
+  - eg - :foo, :bar
+  - special because they are symbolic identifiers that evaluate to themselves
+
+- symbols
+  - identifiers that are used to refer to something else
+  - like there is a function called `inc` which is used to increment a number
+  - unlike 0, "hi", inc is a symbol
+  - when Clojure evaluates a symbol, it looks up that symbol’s meaning
+  - type inc in your REPL, you will get the meaning of what inc represents
+  - we can also refer to symbol itself without evaluating it - `'inc`
+  - the single quote ' escapes a sentence
+  - a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
+  - try: '123, '"foo", 'true
+  - quoting a value will return just the sa,e value back
+  - quoting a symbol will return that symbol unevaluated
+
 ** Lesson 3 (lists)
 - lists are what they mean: a collection of things
 - `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
@@ -150,3 +157,6 @@ List of basic types:
 - defn, fn
 
 ** Lesson 8 (Immutability and Purity)
+
+** First Program
+- https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md

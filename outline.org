@@ -1,0 +1,10 @@
+The workshop will be conducted over two days.
+
+First Day - Installation and REPL
+
+We will go over installation on IDEs and setup of develepment environment on all attendees laptops.
+We will be using NightCode (https://sekao.net/nightcode/) which should work out of the box on most OS.
+After installation, we will go over the following topics on the first day:
+1) What is programming
+2) What is Clojure
+3) Why did we choose Clojure
