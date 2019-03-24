@@ -74,21 +74,21 @@
   parentheses, or in other words, nested enclosing instructions.
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
 - Clojure uses whitespace to separate operands, and it treats commas as whitespace.
-
 - All Clojure code is written in a uniform structure. Clojure recognizes two kinds of structures:
 1. Literal representations of data structures (like numbers, strings, maps, and vectors)
-2. expressions
+2. expressions - in any expression, you have nouns and verbs
 
-- in any expression, you have nouns and verbs
+*** nouns
 - nouns are things in the world
-  - these are the values that we pass to an expression, or what an expression evaluates to
-  - the values can be of different types
-  - most languages have some basic data types
-  - number, string (text), boolean (true/false)
-  - nil, true, 0, and "hi there!" are all different types of values
+- these are the values that we pass to an expression, or what an expression evaluates to
+- the values can be of different types
+- most languages have some basic data types
+- number, string (text), boolean (true/false)
+- nil, true, 0, and "hi there!" are all different types of values
 
+*** verbs
 - functions are the verbs in prgramming
-  - given some values (arguments/parameters), they return a value
+- given some values (arguments/parameters), they return a value
 
 ** Simple data types - string, bool and numbers
 - we have already covered what values/things are
@@ -114,35 +114,35 @@ List of basic types:
 - infix vs. prefix notation [TODO]
 
 ** Special data types - symbols and keywords
-- keywords
-  - clojure has a special type called keyword
-  - eg - :foo, :bar
-  - special because they are symbolic identifiers that evaluate to themselves
+*** keywords
+- clojure has a special type called keyword
+- eg - :foo, :bar
+- special because they are symbolic identifiers that evaluate to themselves
 
-- symbols
-  - identifiers that are used to refer to something else
-  - like there is a function called `inc` which is used to increment a number
-  - unlike 0, "hi", inc is a symbol
-  - when Clojure evaluates a symbol, it looks up that symbol’s meaning
-  - type inc in your REPL, you will get the meaning of what inc represents
-  - we can also refer to symbol itself without evaluating it - `'inc`
-  - the single quote ' escapes a sentence
-  - a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
-  - try: '123, '"foo", 'true
-  - quoting a value will return just the sa,e value back
-  - quoting a symbol will return that symbol unevaluated
+*** symbols
+- identifiers that are used to refer to something else
+- like there is a function called `inc` which is used to increment a number
+- unlike 0, "hi", inc is a symbol
+- when Clojure evaluates a symbol, it looks up that symbol’s meaning
+- type inc in your REPL, you will get the meaning of what inc represents
+- we can also refer to symbol itself without evaluating it - `'inc`
+- the single quote ' escapes a sentence
+- a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
+- try: '123, '"foo", 'true
+- quoting a value will return just the sa,e value back
+- quoting a symbol will return that symbol unevaluated
 
-- def
-  - we use def to bind a symbol to its value
+*** def
+- we use def to bind a symbol to its value
 #+BEGIN_SRC clojure
 (def chosen-one "Harry Potter")
 #+END_SRC
-  - here, we have bound the symbol 'chosen-one to the string "Harry Potter"
-  - If we had to type the same values over and over, it would be very
-    hard to write a program. So, we bind them to symbols so we
-    can refer to them in a way we can remember.
+- here, we have bound the symbol 'chosen-one to the string "Harry Potter"
+- If we had to type the same values over and over, it would be very
+  hard to write a program. So, we bind them to symbols so we
+  can refer to them in a way we can remember.
 
-** Functions I (built-in fns)
+** Functions
 - functions we have seen so far
 #+BEGIN_SRC clojure
 (+ 1 2)
@@ -150,8 +150,70 @@ List of basic types:
 (prn "this function prints whatever you give it")
 (inc 42)
 #+END_SRC
-- these are some of the function pre-defined in clojure
--
+- a function is an independent, discrete piece of code that takes in some values (called arguments) and returns a value
+- each function takes in zero or more number of arguments and returns one value
+
+*** calling a function
+- by now you’ve seen many examples of function calls
+#+BEGIN_SRC clojure
+(+ 1 2 3 4)
+#+END_SRC
+- all Clojure operations have the same syntax: opening parenthesis, operator, operands, closing parenthesis
+- function call is just another term for an operation where the operator is a function or a function expression (an expression that returns a function)
+#+BEGIN_SRC clojure
+(1 2 3 4)
+("test" 1 2 3)
+#+END_SRC
+- the above examples are not valid function calls as the operator is not a function
+- evaulate them to see what result you get
+- you might see that exception a lot while coding in Clojure
+- <x> cannot be cast to clojure.lang.IFn just means that you’re trying to use something as a function when it’s not
+
+*** write your own function
+
+**** defn
+#+BEGIN_SRC
+(defn same [x] x)
+#+END_SRC
+- Function definitions are composed of five main parts:
+1. defn
+2. function name
+3. a docstring describing the function (optional)
+4. parameters listed in brackets
+5. function body
+
+- in the above example, you have defined a fn that takes an argument and return it back
+- try it out
+#+BEGIN_SRC
+(same 42)
+(same "am I the same")
+(same :foo)
+#+END_SRC
+- exercise: write a function to add 10 to a number
+
+**** fn
+- this is another way of defining a fn
+#+BEGIN_SRC
+(fn same [x] x)
+#+END_SRC
+
+- you can also write functions without any names
+#+BEGIN_SRC
+(fn same [x] x)
+#+END_SRC
+
+- the function body can contain forms of any kind
+- Clojure automatically returns the last form evaluated
+#+BEGIN_SRC
+(defn return-something []
+  1
+  (+ 1 2)
+  2
+  "foo")
+#+END_SRC
+
+- all functions are created equal. no special functions. even the core fns are same are the ones you create.
+
 ** Sequence / Collection types and associated functions
 - lists are what they mean: a collection of things
 - `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
@@ -168,7 +230,6 @@ List of basic types:
 - conj - adds an element to the collection
 - map - goes over the collection and applies a function over all elements in the collection returning a new collection
 
-** Functions II (introduce defn, fn et al)
 ** Context and bindings (let)
 ** Control flow and logic (if, when, do)
 - control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
