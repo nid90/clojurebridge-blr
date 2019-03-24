@@ -158,6 +158,137 @@ List of basic types:
 ** Functions II (introduce defn, fn et al)
 ** Context and bindings (let)
 ** Control flow and logic (if, when, do)
+- control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
+
+- if your charging station is dead, take a cab
+- if your wet and dry waste is not segregated, pay a fine to bbmp
+
+- if something is true or false or a bunch of things are true or false, react
+
+- most of what we do today in software this kind of decision making
+  - the user input valid? if yes, save her data, otherwise throw an error
+
+- hence, changing the order of evaluation in a language is called control flow, and lets programs make decisions based on varying circumstances
+
+*** if
+
+#+begin_src clojure
+(if (= 2 2) "yes" "no")
+#+end_src
+
+#+begin_src clojure
+(if (< (+ y 40) 150)
+  (+ y 40)
+  -150)
+#+end_src
+
+#+begin_src clojure
+(if "conditional-expression"
+  "expression-to-evaluate-when-true"
+  "expression-to-evaluate-when-false")
+#+end_src
+
+- truthiness:
+  - when testing the truth of an expression, Clojure considers the values nil and false to be false and everything else to be true. Here are some examples
+
+#+begin_src clojure
+(if "anything other than nil or false is considered true"
+  "A string is considered true"
+  "A string is not considered true")
+#+end_src
+
+#+begin_src clojure
+(if nil
+  "nil is considered true"
+  "nil is not considered true")
+#+end_src
+
+#+begin_src clojure
+(if (get {:a 1} :b)
+  "expressions which evaluate to nil are considered true"
+  "expressions which evaluate to nil are not considered true")
+#+end_src
+
+*** boolean logic
+
+- if statements are not limited to testing only one thing, you can test multiple conditions using boolean logic. Boolean logic refers to combining and changing the results of predicates using and, or, and not.
+
+#+begin_src clojure
+(or 1 2)
+(or false 2)
+(or true false)
+
+
+(and 1 2)
+(and false false)
+(and false 2)
+(and 2 false)
+
+(not false)
+#+end_src
+
+*** leap year?
+
+**** begin
+#+begin_src clojure
+(defn leap-year? [year]
+  "Every four years, except years divisible by 100, but yes for years divisible by 400.")
+#+end_src
+
+**** first conditional
+#+begin_src clojure
+(defn leap-year?
+  "Every four years, except years divisible by 100, but yes for years divisible by 400."
+  [year]
+  (= 0 (mod year 4)))
+#+end_src
+
+**** second conditional
+#+begin_src clojure
+(defn leap-year?
+  "Every four years, except years divisible by 100, but yes for years divisible by 400."
+  [year]
+  (and (= 0 (mod year 4)
+       (= 0 (mod year 400)))))
+#+end_src
+
+**** third conditional
+
+#+begin_src clojure
+(defn leap-year?
+  "Every four years, except years divisible by 100, but yes for years divisible by 400."
+  [year]
+  (and (= 0 (mod year 4))
+       (or (= 0 (mod year 400))
+           (not (= 0 (mod year 100))))))
+#+end_src
+
+*** when
+
+- if you’ve never seen this concept in programming before, remember that it follows the common sense way you look at things normally.
+  - Is this and that true? Only if both are true.
+  - Is this or that true? Yes, if either – or both! – are.
+  - Is this not true? Yes, if it’s false.
+
+- when you only want to take one branch of an if, you can use when:
+
+#+begin_src clojure
+(when false
+  (prn :hi)
+  (prn :there))
+#+end_src
+
+
+#+begin_src clojure
+(when true
+  (prn :hi)
+  (prn :there))
+#+end_src
+
+- because there is only one path to take, when takes any number of expressions, and evaluates them only when the predicate is truthy. If the predicate evaluates to nil or false, when does not evaluate its body, and returns nil.
+
+- exercise: Using the control flow constructs we’ve learned, write a schedule function which, given an hour of the day, returns what you’ll be doing at that time. (schedule 18), for us, returns :dinner
+
 ** Composition of functions
 
 ** First Program
