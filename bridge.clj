@@ -20,3 +20,9 @@ inc
 (+ 1 2)
 (1 2 3 4)
 ((fn same [x] x) 42)
+(let [x 1
+      y 1
+      z (+ x y)
+      z (* 2 z)]
+  (println z)
+  x)

@@ -231,6 +231,38 @@ List of basic types:
 - map - goes over the collection and applies a function over all elements in the collection returning a new collection
 
 ** Context and bindings (let)
+- let is a Clojure special form, a fundamental building block of the language
+- When you are creating functions, you may want to assign names to values in order to reuse those values or make your code more readable.
+- Inside of a function, however, you should not use def, like you would outside of a function.
+- Instead, you should use a special form called let.
+- Like def, let creates a binding
+#+BEGIN_SRC clojure
+(let [mangoes 3
+      oranges 5]
+  (+ mangoes oranges))
+#+END_SRC
+
+#+BEGIN_SRC clojure
+(def x 32)
+(let [x 42]
+  (prn x))
+#+END_SRC
+- let lets you evaulate expressions in the context of its bindings
+- In other languages, it is called a local variable assignment
+- In Clojure, it has the different name: lexical binding
+- Clojure’s lexically bound variables are available to use in a limited code block (scope)
+- write as many bindings (key-value pairs) as we want within the square brackets
+
+#+BEGIN_SRC clojure
+(let [x 1
+      y 1
+      z (+ x y)
+      z (* 2 z)]
+  (println z)
+  x)
+#+END_SRC
+- let also returns the last expression in
+
 ** Control flow and logic (if, when, do)
 - control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
 
