@@ -53,7 +53,7 @@
   and surprising.
 
 
-** Lesson 0 (REPL)
+** Understanding the REPL
 - REPL stands for Read, Evaluate, Print Loop
 - Many programming languages, including Clojure, have a way to execute code interactively so you get instant feedback.
 - In other words, the code is read, then it is evaluated, then the result is printed, and you begin again–thus, a loop.
@@ -61,7 +61,7 @@
 - as a first thing, type `nil` in your REPL, and see what it returns.
   - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
 
-** Lesson 1 (Syntax)
+** Syntax, or anatomy of s-expressions
 - s-expressions or symbolic expressions
 - `(prn "Hello World")` ;; evauluate this
 - all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
@@ -88,7 +88,7 @@
 - functions are the verbs in prgramming
   - given some values (arguments/parameters), they return a value
 
-** Lesson 2 (numbers, booleans and strings)
+** Simple data types - string, bool and numbers
 - we have already covered what values/things are
 - 1, 2.5, nil, true, "hello"; these are all values
 - but as you can probably already tell, they are all different values
@@ -108,11 +108,10 @@ List of basic types:
 2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
 3) Strings: text like "hey", "cats are so nice", "ありがとう"
 4) Characters: \a, \b, \c
-5) Keywords: :foo, :bar, :baz
-6) Symbols: 'foo
 
+- infix vs. prefix notation [TODO]
 
-** Symbold and keywords
+** Special data types - symbols and keywords
 - keywords
   - clojure has a special type called keyword
   - eg - :foo, :bar
@@ -131,7 +130,16 @@ List of basic types:
   - quoting a value will return just the sa,e value back
   - quoting a symbol will return that symbol unevaluated
 
-** Lesson 3 (lists)
+- def
+  - we use def to bind a symbol to its value
+  - `(def chosen-one "Harry Potter")`
+  - here, we have bound the symbol 'chosen-one to the string "Harry Potter"
+  - If we had to type the same values over and over, it would be very
+    hard to write a program. So, we bind them to symbols so we
+    can refer to them in a way we can remember.
+
+** Functions I (built-in fns)
+** Sequence / Collection types and associated functions
 - lists are what they mean: a collection of things
 - `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
 - these are all collections of different types
@@ -147,16 +155,10 @@ List of basic types:
 - conj - adds an element to the collection
 - map - goes over the collection and applies a function over all elements in the collection returning a new collection
 
-** lesson 4 (Functions)
--
-** Lesson 5 - def, defn, let
-** Lesson 6 - control flow
-- if, when, do
-** Lesson 7 (functions and composition of functions)
-
-- defn, fn
-
-** Lesson 8 (Immutability and Purity)
+** Functions II (introduce defn, fn et al)
+** Context and bindings (let)
+** Control flow and logic (if, when, do)
+** Composition of functions
 
 ** First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md
