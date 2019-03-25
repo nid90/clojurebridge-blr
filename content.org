@@ -406,13 +406,12 @@ Clojure provides:
            (not (= 0 (mod year 100))))))
 #+end_src
 
-*** when
-
 - If you’ve never seen this concept in programming before, remember that it follows the common sense way you look at things normally.
   - Is this and that true? Only if both are true.
   - Is this or that true? Yes, if either – or both! – are.
   - Is this not true? Yes, if it’s false.
 
+*** when
 - When you only want to take one branch of an if, you can use when:
 
 #+begin_src clojure
@@ -440,6 +439,31 @@ Using the control flow constructs we’ve learned, write a schedule function whi
 #+end_src
 
 ** Composition of functions
+
+- We've now seen and written functions that take in some data as arguments, perform some process or calculations using this data, and return some data as a result.
+- Clojure also allows us to pass in the result of one function as an argument to another function. This is referred to as "Function Composition".
+- We can use function composition to build up a complex multi-step computation using small, simple functions.
+- Lets say we need to calculate the value of a tank full of petrol, given the following information:
+  - The tank is a cylinder, 4 metres high, and has a radius of 6 feet.
+  - The price per litre of petrol is 78 rupees.
+#+begin_src clojure
+(defn volume-of-cylinder [radius height]                ;; In cubic metres
+  (* 3.14 radius radius height))
+
+(defn convert-feet-to-metres [feet]
+  (* feet 0.3048))
+
+(defn convert-cubic-metres-to-litres [cubic-metres]
+ (* 1000 cubic-metres))
+
+(defn calculate-value-of-petrol [litres]
+  (* 78 litres))
+
+;; Putting it all together
+(calculate-value-of-petrol
+  (convert-cubic-metres-to-litres 
+    (volume-of-cylinder (convert-feet-to-metres 6) 4)))
+#+end_src 
 
 ** First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md
