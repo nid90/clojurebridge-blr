@@ -32,9 +32,9 @@
 
 ** What is Clojure
 - Clojure is a modern dialect of a very old family of computer languages, called Lisp.
-- It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from CLojure (you can ignore this for now).
-- what can you do in Clojure?
-- you can create web things, mobile things, sketch things
+- It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from Clojure (you can ignore this for now).
+- What can you do in Clojure?
+- You can create web things, mobile things, sketch things
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
@@ -57,8 +57,8 @@
 - REPL stands for Read, Evaluate, Print Loop
 - Many programming languages, including Clojure, have a way to execute code interactively so you get instant feedback.
 - In other words, the code is read, then it is evaluated, then the result is printed, and you begin again–thus, a loop.
-- let's start a REPL. and we can type and evaluate things as we go on learning them.
-- as a first thing, type `nil` in your REPL, and see what it returns.
+- Let's start a REPL. and we can type and evaluate things as we go on learning them.
+- As a first thing, type `nil` in your REPL, and see what it returns.
   - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
 
 ** Syntax, or anatomy of s-expressions
@@ -66,38 +66,38 @@
 #+BEGIN_SRC clojure
 (prn "Hello World") ;; evauluate this
 #+END_SRC
-- all Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+- All Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
 - Notice the parentheses. Parentheses enclose instructions to the
   computer in Clojure. A left parenthesis is the start of the
   instruction, and a matching right parenthesis is the end of
   enclosing instruction. Normally, Clojure code has a lot of nested
-  parentheses, or in other words, nested enclosing instructions.
+  parentheses, or in other words, nested enclosed instructions.
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
 - Clojure uses whitespace to separate operands, and it treats commas as whitespace.
 - All Clojure code is written in a uniform structure. Clojure recognizes two kinds of structures:
 1. Literal representations of data structures (like numbers, strings, maps, and vectors)
-2. expressions - in any expression, you have nouns and verbs
+2. Expressions - in any expression, you have nouns and verbs
 
 *** nouns
-- nouns are things in the world
-- these are the values that we pass to an expression, or what an expression evaluates to
-- the values can be of different types
-- most languages have some basic data types
+- Nouns are things in the world
+- These are the values that we pass to an expression, or what an expression evaluates to
+- The values can be of different types
+- Most languages have some basic data types
 - number, string (text), boolean (true/false)
 - nil, true, 0, and "hi there!" are all different types of values
 
 *** verbs
-- functions are the verbs in prgramming
-- given some values (arguments/parameters), they return a value
+- Functions are the verbs in programming
+- Given some values (arguments/parameters), they return a value
 
 ** Simple data types - string, bool and numbers
-- we have already covered what values/things are
+- We have already covered what values/things are
 - 1, 2.5, nil, true, "hello"; these are all values
-- but as you can probably already tell, they are all different values
-- in other words - different types of values
-- types relate to each other. for example in math, both 1 and 2.5 are
+- But as you can probably already tell, they are all different values
+- In other words - different types of values
+- Types relate to each other. for example in math, both 1 and 2.5 are
   numbers; but 1 is a natural number while 2.5 is real number
-- every language has a type system; a particular way of organizing
+- Every language has a type system; a particular way of organizing
   nouns into groups, figuring out which verbs make sense on which
   types, and relating types to one another
 - Clojure's type system is:
@@ -115,58 +115,58 @@ List of basic types:
 
 ** Special data types - symbols and keywords
 *** keywords
-- clojure has a special type called keyword
+- Clojure has a special type called keyword
 - eg - :foo, :bar
-- special because they are symbolic identifiers that evaluate to themselves
+- Special because they are symbolic identifiers that evaluate to themselves
 
 *** symbols
-- identifiers that are used to refer to something else
-- like there is a function called `inc` which is used to increment a number
-- unlike 0, "hi", inc is a symbol
-- when Clojure evaluates a symbol, it looks up that symbol’s meaning
-- type inc in your REPL, you will get the meaning of what inc represents
-- we can also refer to symbol itself without evaluating it - `'inc`
-- the single quote ' escapes a sentence
-- a quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
-- try: '123, '"foo", 'true
-- quoting a value will return just the sa,e value back
-- quoting a symbol will return that symbol unevaluated
+- Identifiers that are used to refer to something else
+- For example, there is a function called `inc` which is used to increment a number
+- Unlike 0, "hi", inc is a symbol
+- When Clojure evaluates a symbol, it looks up that symbol’s meaning
+- Type inc in your REPL, you will get the meaning of what inc represents
+- We can also refer to symbol itself without evaluating it - `'inc`
+- The single quote ' escapes a sentence
+- A quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
+- Try: '123, '"foo", 'true
+- Quoting a value will return just the sa,e value back
+- Quoting a symbol will return that symbol unevaluated
 
 *** def
-- we use def to bind a symbol to its value
+- We use def to bind a symbol to its value
 #+BEGIN_SRC clojure
 (def chosen-one "Harry Potter")
 #+END_SRC
-- here, we have bound the symbol 'chosen-one to the string "Harry Potter"
+- Here, we have bound the symbol 'chosen-one to the string "Harry Potter"
 - If we had to type the same values over and over, it would be very
   hard to write a program. So, we bind them to symbols so we
   can refer to them in a way we can remember.
 
 ** Functions
-- functions we have seen so far
+- Functions we have seen so far
 #+BEGIN_SRC clojure
 (+ 1 2)
 (str "this is a function " "that combines two strings")
 (prn "this function prints whatever you give it")
 (inc 42)
 #+END_SRC
-- a function is an independent, discrete piece of code that takes in some values (called arguments) and returns a value
-- each function takes in zero or more number of arguments and returns one value
+- A function is an independent, discrete piece of code that takes in some values (called arguments) and returns a value
+- Each function takes in zero or more number of arguments and returns one value
 
 *** calling a function
-- by now you’ve seen many examples of function calls
+- By now you’ve seen many examples of function calls
 #+BEGIN_SRC clojure
 (+ 1 2 3 4)
 #+END_SRC
-- all Clojure operations have the same syntax: opening parenthesis, operator, operands, closing parenthesis
-- function call is just another term for an operation where the operator is a function or a function expression (an expression that returns a function)
+- All Clojure operations have the same syntax: opening parenthesis, operator, operands, closing parenthesis
+- Function call is just another term for an operation where the operator is a function or a function expression (an expression that returns a function)
 #+BEGIN_SRC clojure
 (1 2 3 4)
 ("test" 1 2 3)
 #+END_SRC
-- the above examples are not valid function calls as the operator is not a function
-- evaulate them to see what result you get
-- you might see that exception a lot while coding in Clojure
+- The above examples are not valid function calls as the operator is not a function
+- Evaulate them to see what result you get
+- You might see that exception a lot while coding in Clojure
 - <x> cannot be cast to clojure.lang.IFn just means that you’re trying to use something as a function when it’s not
 
 *** write your own function
@@ -177,32 +177,32 @@ List of basic types:
 #+END_SRC
 - Function definitions are composed of five main parts:
 1. defn
-2. function name
-3. a docstring describing the function (optional)
-4. parameters listed in brackets
-5. function body
+2. Function name
+3. A docstring describing the function (optional)
+4. Parameters listed in brackets
+5. Function body
 
-- in the above example, you have defined a fn that takes an argument and return it back
-- try it out
+- In the above example, you have defined a fn that takes an argument and returns it back
+- Try it out
 #+BEGIN_SRC
 (same 42)
 (same "am I the same")
 (same :foo)
 #+END_SRC
-- exercise: write a function to add 10 to a number
+- Exercise: write a function to add 10 to a number
 
 **** fn
-- this is another way of defining a fn
+- This is another way of defining a fn
 #+BEGIN_SRC
 (fn same [x] x)
 #+END_SRC
 
-- you can also write functions without any names
+- You can also write functions without any names
 #+BEGIN_SRC
 (fn same [x] x)
 #+END_SRC
 
-- the function body can contain forms of any kind
+- The function body can contain forms of any kind
 - Clojure automatically returns the last form evaluated
 #+BEGIN_SRC
 (defn return-something []
@@ -212,23 +212,25 @@ List of basic types:
   "foo")
 #+END_SRC
 
-- all functions are created equal. no special functions. even the core fns are same are the ones you create.
+- All functions are created equal, there are no "special" functions. Even the core fns are the same as the ones you create.
 
 ** Sequence / Collection types and associated functions
 - lists are what they mean: a collection of things
 - `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
-- these are all collections of different types
-- but clojure doesn't put any restrictions on the type of data you can put in a collection
+- These are all collections of different types
+- But clojure doesn't put any restrictions on the type of data you can put in a collection
 - `[1 :a "a" 2 :b]` is also a valid collection
-- there are different types of collections:
+- There are different types of collections:
 1. lists - `(1 2 3)
 2. vectors - [1 2 3]
 3. hash maps - {:a 1 :b 2 :c 3}
 4. sets - #{1 2 3}
-- uniform way to use all of these collections together
-- some built in fns which make working with collections easy
+
+Clojure provides:
+- A uniform way to use all of these collections together
+- Some built in fns which make working with collections easy
 - conj - adds an element to the collection
-- map - goes over the collection and applies a function over all elements in the collection returning a new collection
+- map - goes over the collection and applies a function to each of the elements in the collection. Returns a new collection with the results.
 
 ** Context and bindings (let)
 - let is a Clojure special form, a fundamental building block of the language
@@ -251,7 +253,7 @@ List of basic types:
 - In other languages, it is called a local variable assignment
 - In Clojure, it has the different name: lexical binding
 - Clojure’s lexically bound variables are available to use in a limited code block (scope)
-- write as many bindings (key-value pairs) as we want within the square brackets
+- Write as many bindings (key-value pairs) as we want within the square brackets
 
 #+BEGIN_SRC clojure
 (let [x 1
@@ -264,17 +266,17 @@ List of basic types:
 - let also returns the last expression in
 
 ** Control flow and logic (if, when, do)
-- control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
+- Control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
 
-- if your charging station is dead, take a cab
-- if your wet and dry waste is not segregated, pay a fine to bbmp
+- If your charging station is dead, take a cab
+- If your wet and dry waste is not segregated, pay a fine to bbmp
 
-- if something is true or false or a bunch of things are true or false, react
+- If something is true or false or a bunch of things are true or false, react
 
-- most of what we do today in software this kind of decision making
-  - the user input valid? if yes, save her data, otherwise throw an error
+- Most of what we do today in software is this kind of decision making
+  - Is the user input valid? if yes, save her data, otherwise throw an error
 
-- hence, changing the order of evaluation in a language is called control flow, and lets programs make decisions based on varying circumstances
+- Hence, changing the order of evaluation in a language is called control flow, and lets programs make decisions based on varying circumstances
 
 *** if
 
@@ -294,8 +296,8 @@ List of basic types:
   "expression-to-evaluate-when-false")
 #+end_src
 
-- truthiness:
-  - when testing the truth of an expression, Clojure considers the values nil and false to be false and everything else to be true. Here are some examples
+- Truthiness:
+  - When testing the truth of an expression, Clojure considers the values nil and false to be false and everything else to be true. Here are some examples
 
 #+begin_src clojure
 (if "anything other than nil or false is considered true"
@@ -371,12 +373,12 @@ List of basic types:
 
 *** when
 
-- if you’ve never seen this concept in programming before, remember that it follows the common sense way you look at things normally.
+- If you’ve never seen this concept in programming before, remember that it follows the common sense way you look at things normally.
   - Is this and that true? Only if both are true.
   - Is this or that true? Yes, if either – or both! – are.
   - Is this not true? Yes, if it’s false.
 
-- when you only want to take one branch of an if, you can use when:
+- When you only want to take one branch of an if, you can use when:
 
 #+begin_src clojure
 (when false
@@ -391,7 +393,7 @@ List of basic types:
   (prn :there))
 #+end_src
 
-- because there is only one path to take, when takes any number of expressions, and evaluates them only when the predicate is truthy. If the predicate evaluates to nil or false, when does not evaluate its body, and returns nil.
+- Because there is only one path to take, when takes any number of expressions, and evaluates them only when the predicate is truthy. If the predicate evaluates to nil or false, when does not evaluate its body, and returns nil.
 
 
 *** exercise
