@@ -119,10 +119,10 @@ List of basic types:
     
     Infix notation places the operator *in* between the operands
     #+BEGIN_SRC
-    1 + 2 + 3 * 4
-    1 + 2 + 12
-    1 + 14
-    15
+    1 + 2 + 3 * 4            1 + 2 + 3 * 4
+    1 + 2 + 12               3 + 3 * 4
+    1 + 14                   6 * 4
+    15                       24
     #+END_SRC
     Infix notation should be familiar to most people.
     In infix notation, the order of operations is not always obvious, deciding which operation should happen 
