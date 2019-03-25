@@ -25,15 +25,21 @@
 * Structure
 ** What is programming
 - Programming is the process of creating a set of instructions that tell a computer how to perform a task. Programming can be done using a variety of computer "languages".
+
 - There are many such languages to choose from. Some of the other languages you might have heard of (or will hear of!) are C, JavaScript, Python, and Java.
+
 - And Clojure, of course.
+
 - Every program has two readers: the computer, and the human. Our job, as programmers, is to communicate clearly to both.
 
 
 ** What is Clojure
 - Clojure is a modern dialect of a very old family of computer languages, called Lisp.
+
 - It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from Clojure (you can ignore this for now).
+
 - What can you do in Clojure?
+
 - You can create web things, mobile things, sketch things [TODO - add more things and demos]
 
 ** Why Clojure
@@ -42,11 +48,13 @@
   small, however, and easy to grasp. Clojure grows with you as you
   learn it, and you can be very productive with a small subset of the
   language.
+
 - Clojure is *all-purpose*. Some languages have a specific
   focus. JavaScript, for example, was traditionally used only in web
   pages (although that’s changed somewhat). Objective-C is used mainly
   for iPhone apps. We’re going to make a drawing application today,
   but you can use Clojure for any sort of application easily.
+
 - Clojure is *fun*. That’s a matter of opinion, of course, but we think
   it holds true. I hope that during this course you experience the joy
   of seeing a Clojure program come together and do something powerful
@@ -55,11 +63,20 @@
 
 ** Understanding the REPL
 - REPL stands for Read, Evaluate, Print Loop
+
 - Many programming languages, including Clojure, have a way to execute code interactively so you get instant feedback.
+
 - In other words, the code is read, then it is evaluated, then the result is printed, and you begin again–thus, a loop.
+
 - Let's start a REPL. and we can type and evaluate things as we go on learning them.
+
 - As a first thing, type `nil` in your REPL, and see what it returns.
   - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
+
+#+BEGIN_SRC clojure
+nil
+#+END_SRC
+
 
 ** Syntax, or anatomy of s-expressions
 - s-expressions or symbolic expressions
@@ -67,23 +84,32 @@
 (prn "Hello World") ;; evaluate this
 #+END_SRC
 - All Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+
 - Notice the parentheses. Parentheses enclose instructions to the
   computer in Clojure. A left parenthesis is the start of the
   instruction, and a matching right parenthesis is the end of
   enclosing instruction. Normally, Clojure code has a lot of nested
   parentheses, or in other words, nested enclosed instructions.
+
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
+
 - Clojure uses whitespace to separate operands, and it treats commas as whitespace.
+
 - All Clojure code is written in a uniform structure. Clojure recognizes two kinds of structures:
 1. Literal representations of data structures (like numbers, strings, maps, and vectors)
 2. Expressions - in any expression, you have nouns and verbs
 
 *** nouns
 - Nouns are things in the world
+
 - These are the values that we pass to an expression, or what an expression evaluates to
+
 - The values can be of different types
+
 - Most languages have some basic data types
+
 - number, string (text), boolean (true/false)
+
 - nil, true, 0, and "hi there!" are all different types of values
 
 *** verbs
@@ -92,19 +118,27 @@
 
 ** Simple data types - string, bool and numbers
 - We have already covered what values/things are
+
 - 1, 2.5, nil, true, "hello"; these are all values
+
 - But as you can probably already tell, they are all different values
+
 - In other words - different types of values
+
 - Types relate to each other. for example in math, both 1 and 2.5 are
+
   numbers; but 1 is a natural number while 2.5 is real number
+
 - Every language has a type system; a particular way of organizing
   nouns into groups, figuring out which verbs make sense on which
   types, and relating types to one another
+
 - Clojure's type system is:
   - *strong* in that operations on improper types are simply not allowed
   - *dynamic* because they are enforced when the program is run,
     instead of when the program is first read by the computer (in
     other words, at runtime vs compile time)
+
 List of basic types:
 1) nil
 2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
@@ -151,41 +185,59 @@ List of basic types:
 ** Special data types - symbols and keywords
 *** keywords
 - Clojure has a special type called keyword
+
 - eg - :foo, :bar
+
 - Special because they are symbolic identifiers that evaluate to themselves
 
 *** symbols
 - Identifiers that are used to refer to something else
+
 - For example, there is a function called `inc` which is used to increment a number
+
 - Unlike 0, "hi", inc is a symbol
+
 - When Clojure evaluates a symbol, it looks up that symbol’s meaning
+
 - Type inc in your REPL, you will get the meaning of what inc represents
+
 - We can also refer to symbol itself without evaluating it - `'inc`
+
 - The single quote ' escapes a sentence
+
 - A quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
+
 - Try: '123, '"foo", 'true
+
 - Quoting a value will return just the sa,e value back
+
 - Quoting a symbol will return that symbol unevaluated
 
 *** def
 - We use def to bind a symbol to its value
+
 #+BEGIN_SRC clojure
 (def chosen-one "Harry Potter")
 #+END_SRC
+
 - Here, we have bound the symbol 'chosen-one to the string "Harry Potter"
+
 - If we had to type the same values over and over, it would be very
   hard to write a program. So, we bind them to symbols so we
   can refer to them in a way we can remember.
 
 ** Functions
 - Functions we have seen so far
+
 #+BEGIN_SRC clojure
 (+ 1 2)
 (str "this is a function " "that combines two strings")
 (prn "this function prints whatever you give it")
 (inc 42)
 #+END_SRC
+
 - A function is an independent, discrete piece of code that takes in some values (called arguments) and returns a value
+
 - Each function takes in zero or more number of arguments and returns one value
 
 *** calling a function
@@ -251,16 +303,24 @@ List of basic types:
 
 ** Sequence / Collection types and associated functions
 - So far, we've dealt with discrete pieces of data: one number, one string, one value. When programming, it is more often the case that you want to work with groups of data.
+
 - Clojure has great facilities for working with these groups, or collections, of data. Not only does it provide four different types of collections, but it also provides a uniform way to use all of these collections together.
 
 *** Vectors
 - A vector is a sequential collection of values.
+
 - A vector may be empty.
+
 - A vector may contain values of different types.
+
 - Each value in a vector is numbered starting at 0, that number is called its index.
+
 - The index is used to refer to each value when looking them up.
+
 - To imagine a vector, imagine a box split into some number of equally-sized compartments.
+
 - Each of those compartments has a number.
+
 - You can put a piece of data inside each compartment and always know where to find it, as it has a number.
 
 #+BEGIN_SRC
@@ -433,7 +493,9 @@ List of basic types:
 
 *** Collection of collections
 - Simple values such as numbers, keywords, and strings are not the only types of things you can put into collections.
+
 - You can also put other collections into collections, so you can have a vector of maps, or a list of vectors, or whatever combination fits your data.
+
 #+BEGIN_SRC clojure
 (def wizards [{:name  "Harry Pooter"
                :house "Gryffindor"}
@@ -445,14 +507,20 @@ List of basic types:
              :slytherin  {:colors ["green" "silver"]
                           :points 150}})
 #+END_SRC
+
 *** exercise
 - add Ron and Hermione to the collection of wizards
+
 - write a function to to extract points of a house given the name
 ** Context and bindings (let)
 - let is a Clojure special form, a fundamental building block of the language
+
 - When you are creating functions, you may want to assign names to values in order to reuse those values or make your code more readable.
+
 - Inside of a function, however, you should not use def, like you would outside of a function.
+
 - Instead, you should use a special form called let.
+
 - Like def, let creates a binding
 #+BEGIN_SRC clojure
 (let [mangoes 3
@@ -465,10 +533,15 @@ List of basic types:
 (let [x 42]
   (prn x))
 #+END_SRC
+
 - let lets you evaulate expressions in the context of its bindings
+
 - In other languages, it is called a local variable assignment
+
 - In Clojure, it has the different name: lexical binding
+
 - Clojure’s lexically bound variables are available to use in a limited code block (scope)
+
 - Write as many bindings (key-value pairs) as we want within the square brackets
 
 #+BEGIN_SRC clojure
@@ -479,6 +552,7 @@ List of basic types:
   (println z)
   x)
 #+END_SRC
+
 - let also returns the last expression in
 
 ** Control flow and logic (if, when, do)
@@ -552,7 +626,6 @@ List of basic types:
 #+end_src
 
 *** leap year?
-
 **** begin
 #+begin_src clojure
 (defn leap-year? [year]
@@ -622,8 +695,11 @@ Using the control flow constructs we’ve learned, write a schedule function whi
 ** Composition of functions
 
 - We've now seen and written functions that take in some data as arguments, perform some process or calculations using this data, and return some data as a result.
+
 - Clojure also allows us to pass in the result of one function as an argument to another function. This is referred to as "Function Composition".
+
 - We can use function composition to build up a complex multi-step computation using small, simple functions.
+
 - Lets say we need to calculate the value of a tank full of petrol, given the following information:
   - The tank is a cylinder, 4 metres high, and has a radius of 6 feet.
   - The price per litre of petrol is 78 rupees.
