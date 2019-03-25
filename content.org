@@ -34,7 +34,7 @@
 - Clojure is a modern dialect of a very old family of computer languages, called Lisp.
 - It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from Clojure (you can ignore this for now).
 - What can you do in Clojure?
-- You can create web things, mobile things, sketch things
+- You can create web things, mobile things, sketch things [TODO - add more things and demos]
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
@@ -64,7 +64,7 @@
 ** Syntax, or anatomy of s-expressions
 - s-expressions or symbolic expressions
 #+BEGIN_SRC clojure
-(prn "Hello World") ;; evauluate this
+(prn "Hello World") ;; evaluate this
 #+END_SRC
 - All Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
 - Notice the parentheses. Parentheses enclose instructions to the
@@ -112,11 +112,11 @@ List of basic types:
 4) Characters: \a, \b, \c
 
 
-*** Infix vs. prefix notation  
-  
+*** Infix vs. prefix notation
+
   Infix and prefix notation refer to two different ways of representing an expression
-  - Infix notation  
-    
+  - Infix notation
+
     Infix notation places the operator *in* between the operands
     #+BEGIN_SRC
     1 + 2 + 3 * 4            1 + 2 + 3 * 4
@@ -125,10 +125,10 @@ List of basic types:
     15                       24
     #+END_SRC
     Infix notation should be familiar to most people.
-    In infix notation, the order of operations is not always obvious, deciding which operation should happen 
+    In infix notation, the order of operations is not always obvious, deciding which operation should happen
     first requires first deciding on an operator precedence hierarchy. In this case - BODMAS or PEMDAS or something similar.
 
-  - Prefix notation 
+  - Prefix notation
 
     Prefix notation places the operator before or *pre* the operands
     #+BEGIN_SRC
@@ -137,16 +137,16 @@ List of basic types:
     + 1 14
     15
     #+END_SRC
-    Prefix notation sidesteps the need to have an operator precedence hierarchy. 
+    Prefix notation sidesteps the need to have an operator precedence hierarchy.
     Since the operands always follow the operator, there is no ambiguity around
     which operator applies to a given operand.
-  
+
   Clojure uses the prefix notation, and pairs it with the s-expressions and parantheses we've already seen to give us a concise and unambiguous notation.
   #+BEGIN_SRC clojure
   (+ 1 2 (* 3 4))
   (+ 1 2 12)
   15
-  #+END_SRC 
+  #+END_SRC
 
 ** Special data types - symbols and keywords
 *** keywords
@@ -250,23 +250,204 @@ List of basic types:
 - All functions are created equal, there are no "special" functions. Even the core fns are the same as the ones you create.
 
 ** Sequence / Collection types and associated functions
-- lists are what they mean: a collection of things
-- `[1 2 3]`, `[:a :b :c]`, `["a", "b", "c"]`
-- These are all collections of different types
-- But clojure doesn't put any restrictions on the type of data you can put in a collection
-- `[1 :a "a" 2 :b]` is also a valid collection
-- There are different types of collections:
-1. lists - `(1 2 3)
-2. vectors - [1 2 3]
-3. hash maps - {:a 1 :b 2 :c 3}
-4. sets - #{1 2 3}
+- So far, we've dealt with discrete pieces of data: one number, one string, one value. When programming, it is more often the case that you want to work with groups of data.
+- Clojure has great facilities for working with these groups, or collections, of data. Not only does it provide four different types of collections, but it also provides a uniform way to use all of these collections together.
 
-Clojure provides:
-- A uniform way to use all of these collections together
-- Some built in fns which make working with collections easy
-- conj - adds an element to the collection
-- map - goes over the collection and applies a function to each of the elements in the collection. Returns a new collection with the results.
+*** Vectors
+- A vector is a sequential collection of values.
+- A vector may be empty.
+- A vector may contain values of different types.
+- Each value in a vector is numbered starting at 0, that number is called its index.
+- The index is used to refer to each value when looking them up.
+- To imagine a vector, imagine a box split into some number of equally-sized compartments.
+- Each of those compartments has a number.
+- You can put a piece of data inside each compartment and always know where to find it, as it has a number.
 
+#+BEGIN_SRC
+   0     1     2     3     4     5
+|-----+-----+-----+-----+-----+----|
+| "a" | "b" | "c" | "d" | "e" | "f |
+|-----+-----+-----+-----+-----+----|
+#+END_SRC
+
+- Note that the numbers start with 0. That may seem strange, but we often count from zero when programming.
+
+**** Syntax
+- Vectors are written using square brackets with any number of pieces of data inside them, separated by spaces.
+- Examples:
+#+BEGIN_SRC clojure
+[1 2 3 4 5]
+[56.9 60.2 61.8 63.1 54.3 66.4 66.5 68.1 70.2 69.2 63.1 57.1]
+[]
+#+END_SRC
+
+**** Creation
+- The next two functions are used to make new vectors.
+- The vector function takes any number of items and puts them in a new vector.
+- `conj` is an interesting function that you'll see used with all the data structures.
+- With vectors, it takes a vector and an item and returns a new vector with that item added to the end of the vector.
+- Why the name conj? conj is short for conjoin, which means to join or combine.
+- This is what we're doing: we're joining the new item to the vector.
+#+BEGIN_SRC clojure
+(vector 5 10 15)
+;=> [5 10 15]
+
+(conj [5 10] 15)
+;=> [5 10 15]
+#+END_SRC
+
+**** Extraction
+- Now, take a look at these four functions.
+- count gives us a count of the number of items in a vector.
+#+BEGIN_SRC clojure
+(count [5 10 15])
+;=> 3
+#+END_SRC
+- nth gives us the nth item in the vector.
+#+BEGIN_SRC clojure
+(nth [5 10 15] 1)
+;=> 10
+#+END_SRC
+- Note that we start counting at 0, so in the example, calling nth with the number 1 gives us what we'd call the second element when we aren't programming.
+- first returns the first item in the collection.
+#+BEGIN_SRC clojure
+(first [5 10 15])
+;=> 5
+#+END_SRC
+- rest returns all except the first item.
+#+BEGIN_SRC clojure
+(rest [5 10 15])
+;=> (10 15)
+#+END_SRC
+- Try not to think about that and nth at the same time, as they can be confusing.
+
+
+
+*** Maps
+**** key value pairs
+- Maps hold a set of keys and values associated with them.
+- You can think of it like a dictionary: you look up things using a word (a keyword) and see the definition (its value).
+- If you've programmed in another language, you might have seen something like maps--maybe called dictionaries, hashes, or associative arrays.
+#+BEGIN_SRC clojure
+{:first       "Harry"
+ :middle     "James"
+ :last       "Potter"
+ :occupation "Auror"}
+#+END_SRC
+
+**** Syntax
+- We write maps by enclosing alternating keys and values in curly braces, like above.
+- Maps are useful because they can hold data in a way we normally think about it.
+- Take our made up example, Harry Potter.
+- A map can hold his first name, middle name and last name, his occupation, or anything else.
+- It's a simple way to collect that data and make it easy to look up.
+#+BEGIN_SRC clojur
+{:a 1 :b "two"}
+#+END_SRC
+- This example is an empty map. It is a map that is ready to hold some things, but doesn't have anything in it yet.
+#+BEGIN_SRC clojure
+{}
+#+END_SRC
+
+**** Creation
+- assoc and dissoc are paired functions: they associate and disassociate items from a map.
+- See how we add the last name "Granger" to the map with assoc, and then we remove it with dissoc.
+#+BEGIN_SRC clojure
+(assoc {:first "Hermione"} :last "Granger")
+;=> {:first "Hermione", :last "Granger"}
+
+(dissoc {:first "Hermione" :last "Granger"} :last)
+;=> {:first "Hermione"}
+#+END_SRC
+- merge merges two maps together to make a new map.
+#+BEGIN_SRC clojure
+(merge {:first "Hermione"} {:last "Granger"})
+;=> {:first "Hermione", :last "Granger"}
+#+END_SRC
+
+**** Extraction
+- `count`, every collection has this function.
+#+BEGIN_SRC clojure
+(count {:first "Hermione" :last "Granger"})
+;=> 2
+#+END_SRC
+-  Why do you think the answer is two? count is returning the number of associations.
+- Since map is a key-value pair, the key is used to get a value from a map.
+- One of the ways often used in Clojure is the examples below.
+#+BEGIN_SRC clojure
+(get {:first "Hermione" :last "Granger"} :first)
+;=> "Hermione"
+(get {:first "Hermione"} :last)
+;=> nil
+
+(get {:first "Hermione"} :last "NA")
+;=> "NA"
+#+END_SRC
+- In the last example, we supplied a backup value "NA". This works when the key we asked for is not in the map.
+
+- We can use also use keyword like using a function in order to look up values in a map.
+#+BEGIN_SRC clojure
+(:first {:first "Hermione" :last "Granger"})
+;=> "Hermione"
+(:last {:first "Hermione"})
+;=> nil
+
+(:last {:first "Hermione"} "NA")
+;=> "NA"
+#+END_SRC
+
+- Then we have keys and vals, which are pretty simple: they return the keys and values in the map.
+#+BEGIN_SRC clojure
+(keys {:first "Hermione" :last "Granger"})
+;=> (:first :last)
+
+(vals {:first "Hermione" :last "Granger"})
+;=> ("Hermione" "Granger")
+#+END_SRC
+- The order is not guaranteed, so we could have gotten (:first :last) or (:last :first).
+
+**** Update
+- After the creation, we want to save a new value associated to the key.
+- The assoc function can be used by assigning a new value to the existing key.
+#+BEGIN_SRC clojure
+(def hello {:count 1 :words "hello"})
+(assoc hello :words "bye")
+;=> {:count 1, :words "bye"}
+#+END_SRC
+- Also, there's handy function update.
+- The function takes map and a key with a function.
+- The value of specified key will be the first argument of the given function.
+#+BEGIN_SRC clojure
+(update hello :count inc)
+;=> {:count 2, :words "hello"}
+(update hello :words str ", world")
+;=> {:count 1, :words "hello, world"}
+#+END_SRC
+- The update-in function works like update, but takes a vector of keys to update at a path to a nested map.
+#+BEGIN_SRC clojure
+(def mine {:pet {:age 5 :name "able"}})
+
+(update-in mine [:pet :age] - 3)
+;=> {:pet {:age 2, :name "able"}}
+#+END_SRC
+
+*** Collection of collections
+- Simple values such as numbers, keywords, and strings are not the only types of things you can put into collections.
+- You can also put other collections into collections, so you can have a vector of maps, or a list of vectors, or whatever combination fits your data.
+#+BEGIN_SRC clojure
+(def wizards [{:name  "Harry Pooter"
+               :house "Gryffindor"}
+              {:name  "Draco Malfoy"
+               :house "Slytherin"}])
+
+(def houses {:gryffindor {:colors ["scarlet" "gold"]
+                          :points 200}
+             :slytherin  {:colors ["green" "silver"]
+                          :points 150}})
+#+END_SRC
+*** exercise
+- add Ron and Hermione to the collection of wizards
+- write a function to to extract points of a house given the name
 ** Context and bindings (let)
 - let is a Clojure special form, a fundamental building block of the language
 - When you are creating functions, you may want to assign names to values in order to reuse those values or make your code more readable.
@@ -461,9 +642,9 @@ Using the control flow constructs we’ve learned, write a schedule function whi
 
 ;; Putting it all together
 (calculate-value-of-petrol
-  (convert-cubic-metres-to-litres 
+  (convert-cubic-metres-to-litres
     (volume-of-cylinder (convert-feet-to-metres 6) 4)))
-#+end_src 
+#+end_src
 
 ** First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md
