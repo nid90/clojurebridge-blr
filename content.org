@@ -111,31 +111,42 @@ List of basic types:
 3) Strings: text like "hey", "cats are so nice", "ありがとう"
 4) Characters: \a, \b, \c
 
-- Infix vs. prefix notation [TODO]
+
+*** Infix vs. prefix notation  
+  
   Infix and prefix notation refer to two different ways of representing an expression
   - Infix notation  
-    - Infix notation places the operator *in* between the operands
-      eg: 1 + 2 + 3 * 4
-          1 + 2 + 12
-          1 + 14
-          15
-      - Infix notation should be familiar to most people.
-      - The order of operations is not obvious, deciding which operation happens first 
-        requires deciding on an operator precedence hierarchy.
-  - Postfix notation
-    - Postfix notation places the operator before or *pre* the operands
-      eg: + 1 + 2  * 3 4
-          + 1 + 2  12
-          + 1 14
-          15
-      - Prefix notation sidesteps the need to have an operator precedence hierarchy. 
-        Since the operands always follow the operator, there is no ambiguity around
-        which operator applies to a given operand.
+    
+    Infix notation places the operator *in* between the operands
+    #+BEGIN_SRC
+    1 + 2 + 3 * 4
+    1 + 2 + 12
+    1 + 14
+    15
+    #+END_SRC
+    Infix notation should be familiar to most people.
+    In infix notation, the order of operations is not always obvious, deciding which operation should happen 
+    first requires first deciding on an operator precedence hierarchy. In this case - BODMAS or PEMDAS or something similar.
+
+  - Prefix notation 
+
+    Prefix notation places the operator before or *pre* the operands
+    #+BEGIN_SRC
+    + 1 + 2 * 3 4
+    + 1 + 2 12
+    + 1 14
+    15
+    #+END_SRC
+    Prefix notation sidesteps the need to have an operator precedence hierarchy. 
+    Since the operands always follow the operator, there is no ambiguity around
+    which operator applies to a given operand.
   
- Clojure uses the prefix notation, and pairs it with the s-expressions we've already seen to give us a concise and unambiguous notation.
- eg: (+ 1 2 (* 3 4))
-     (+ 1 2 12)
-     15
+  Clojure uses the prefix notation, and pairs it with the s-expressions and parantheses we've already seen to give us a concise and unambiguous notation.
+  #+BEGIN_SRC clojure
+  (+ 1 2 (* 3 4))
+  (+ 1 2 12)
+  15
+  #+END_SRC 
 
 ** Special data types - symbols and keywords
 *** keywords
