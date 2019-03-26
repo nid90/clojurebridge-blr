@@ -259,7 +259,7 @@ List of basic types:
 *** write your own function
 
 **** defn
-#+BEGIN_SRC
+#+BEGIN_SRC clojure
 (defn same [x] x)
 #+END_SRC
 - Function definitions are composed of five main parts:
@@ -271,7 +271,7 @@ List of basic types:
 
 - In the above example, you have defined a fn that takes an argument and returns it back
 - Try it out
-#+BEGIN_SRC
+#+BEGIN_SRC clojure
 (same 42)
 (same "am I the same")
 (same :foo)
@@ -280,18 +280,18 @@ List of basic types:
 
 **** fn
 - This is another way of defining a fn
-#+BEGIN_SRC
+#+BEGIN_SRC clojure
 (fn same [x] x)
 #+END_SRC
 
 - You can also write functions without any names
-#+BEGIN_SRC
+#+BEGIN_SRC clojure
 (fn same [x] x)
 #+END_SRC
 
 - The function body can contain forms of any kind
 - Clojure automatically returns the last form evaluated
-#+BEGIN_SRC
+#+BEGIN_SRC clojure
 (defn return-something []
   1
   (+ 1 2)
