@@ -24,12 +24,11 @@ In the learning section, we will go over the basics of Clojure in a presentation
 2. Syntax, or the anatomy of an s-expression [15 mins]
 3. Simple data types - string, bool and numbers (infix vs. prefix notation) [20 mins]
 4. Special data types - symbols and keywords (introduce def) [20 mins]
-5. Functions I (built-in fns) [15 mins]
+5. Functions (built-in fns, def, fn) [25 mins]
 6. Sequence / Collection types and associated functions [30 mins]
-7. Functions II (introduce defn, fn et al) [20 mins]
-8. Context and bindings (let) [20 mins]
-9. Control flow and logic (if, when, do) [20 mins]
-10. Composition of functions [15 mins]
+7. Context and bindings (let) [20 mins]
+8. Control flow and logic (if, when, do) [20 mins]
+9. Composition of functions [15 mins]
 
 ***** Lunch [45 mins | 1:30 PM - 2:15 PM]
 
