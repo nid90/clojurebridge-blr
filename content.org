@@ -497,7 +497,7 @@ List of basic types:
 - You can also put other collections into collections, so you can have a vector of maps, or a list of vectors, or whatever combination fits your data.
 
 #+BEGIN_SRC clojure
-(def wizards [{:name  "Harry Pooter"
+(def wizards [{:name  "Harry Potter"
                :house "Gryffindor"}
               {:name  "Draco Malfoy"
                :house "Slytherin"}])
@@ -692,35 +692,65 @@ Using the control flow constructs we’ve learned, write a schedule function whi
 (schedule 18) ;; for us, returns :dinner
 #+end_src
 
+
 ** Composition of functions
 
-- We've now seen and written functions that take in some data as arguments, perform some process or calculations using this data, and return some data as a result.
+- So far, we've seen and written functions that take in some data as arguments, perform a simple process or calculation using this data, and return some data as a result
 
-- Clojure also allows us to pass in the result of one function as an argument to another function. This is referred to as "Function Composition".
+- Now lets look at a function that performs a slightly more complex task
 
-- We can use function composition to build up a complex multi-step computation using small, simple functions.
-
-- Lets say we need to calculate the value of a tank full of petrol, given the following information:
-  - The tank is a cylinder, 4 metres high, and has a radius of 6 feet.
-  - The price per litre of petrol is 78 rupees.
 #+begin_src clojure
-(defn volume-of-cylinder [radius height]                ;; In cubic metres
-  (* 3.14 radius radius height))
+(def wizards {:hermione {:name  "Hermione Granger"
+                         :house :gryffindor}
+              :draco    {:name  "Draco Malfoy"
+                         :house :slytherin}
+              :padma    {:name  "Padma Patil"
+                         :house :ravenclaw}
+              :cedric   {:name "Cedric Diggory"
+                         :house :hufflepuff}})
 
-(defn convert-feet-to-metres [feet]
-  (* feet 0.3048))
-
-(defn convert-cubic-metres-to-litres [cubic-metres]
- (* 1000 cubic-metres))
-
-(defn calculate-value-of-petrol [litres]
-  (* 78 litres))
-
-;; Putting it all together
-(calculate-value-of-petrol
-  (convert-cubic-metres-to-litres
-    (volume-of-cylinder (convert-feet-to-metres 6) 4)))
+(def houses {:gryffindor {:colors ["scarlet" "gold"]
+                          :points 200}
+             :slytherin  {:colors ["green" "silver"]
+                          :points 150}
+             :ravenclaw  {:colors ["blue" "bronze"]
+                          :points 200}
+             :hufflepuff {:colors ["yellow" "black"]
+                          :points 170}})
 #+end_src
 
+- Given this data, lets say we want to add points to the wizard :cedric's house
+
+- We can break this task down into two steps:
+  - Figure out the wizard's house using the wizards data
+  #+begin_src clojure
+  (defn get-wizards-house [wizard]
+    (:house (wizard wizards)))
+  #+end_src
+
+  - Add points to the house
+  #+begin_src clojure
+  (defn add-points-to-house [points house]
+    (update-in houses [house :points] + points))
+  #+end_src
+
+- Clojure allows us to pass in the result of one function as an argument to another function. This is referred to as "Function Composition"
+
+  - Lets compose our get-wizards-house and add-points-to-house functions into a third function so we can add points using wizards
+  #+begin_src clojure
+  (defn add-points-by-wizard [points wizard]
+    (add-points-to-house points (get-wizards-house wizard)))
+
+  ;; Now try this:
+
+  (add-points-by-wizard 100 :cedric)
+#+end_src
+
+- We can use function composition to build up a complex multi-step computation or process using small, simple, and reusable functions.
+  This makes it much easier to reason about our code in bite-sized pieces and helps keep repetition down to a minimum
+
+*** exercise
+
+Write a function to subtract points from a house using a wizard, as above. Try to reuse as much code as possible
 ** First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md
