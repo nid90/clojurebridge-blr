@@ -1,10 +1,12 @@
 * Preface
-- First off, I would like to thank all these people and groups for having created great content for clojure workshops.
+- First off, I would like to thank all these people and groups for
+  having created great content for clojure workshops.
   - Aditya Athale
   - Kyle Kingsbury (aphyr)
   - ClojureBridge Berlin and London
 
-- We have taken most of our ideas for this workshop from the content these folks have created.
+- We have taken most of our ideas for this workshop from the content
+  these folks have created.
 
 - This workshop is aimed specifically at women. Why? In the past 7
   years of my engineering career I have seen the disparity in gender
@@ -39,7 +41,8 @@
 
 
 ** What is Clojure
-- Clojure is a modern dialect of a very old family of computer languages, called Lisp.
+- Clojure is a modern dialect of a very old family of computer
+  languages, called Lisp.
 
 - TODO history of LISP
 - John McCarthy invented Lisp in the late 1950s.
@@ -51,7 +54,8 @@
 
 - What can you do in Clojure?
 
-- You can create web things, mobile things, sketch things [TODO - add more things and demos]
+- You can create web things, mobile things, sketch things [TODO - add
+  more things and demos]
 
 
 ** Why Clojure
@@ -76,14 +80,18 @@
 ** Understanding the REPL
 - REPL stands for Read, Evaluate, Print Loop
 
-- Many programming languages, including Clojure, have a way to execute code interactively so you get instant feedback.
+- Many programming languages, including Clojure, have a way to execute
+  code interactively so you get instant feedback.
 
-- In other words, the code is read, then it is evaluated, then the result is printed, and you begin again–thus, a loop.
+- In other words, the code is read, then it is evaluated, then the
+  result is printed, and you begin again–thus, a loop.
 
-- Let's start a REPL. and we can type and evaluate things as we go on learning them.
+- Let's start a REPL. and we can type and evaluate things as we go on
+  learning them.
 
 - As a first thing, type `nil` in your REPL, and see what it returns.
-  - `nil` is the most basic value in Clojure, it represents emptiness, nothing-doing, not-a-thing.
+  - `nil` is the most basic value in Clojure, it represents emptiness,
+    nothing-doing, not-a-thing.
 
 #+BEGIN_SRC clojure
 nil
@@ -110,23 +118,61 @@ Evaluate some normal functions in your REPL
 1/2
 (+ 1 2)
 #+END_SRC
-- All program code is written as s-expressions, or parenthesized lists, and all s-expressions evaluate to a value.
+- All program code is written as s-expressions, and all s-expressions
+  evaluate to a value.
 
 - All Clojure code is written in a uniform structure. Unlike most
   other languages, no distinction is made between "expressions" and
   "statements"; all code and data are written as expressions. Clojure
   recognizes two kinds of structures:
 
-1. Literal representations of data structures (like numbers, strings, maps, and vectors)
+*** Literals
+- Literal representations of data structures (like numbers, strings,
+  maps, and vectors)
 #+BEGIN_SRC clojure
 1
 2
 "foo"
 -2
 1/2
+'(1 2 3)
 #+END_SRC
 
-2. Expressions
+*** quote (escape the E in REPL)
+- The last literal in the above list is a list.
+
+- Notice the quote in front of it. Try evaulating it without the quote:
+
+#+BEGIN_SRC clojure
+(1 2 3)
+#+END_SRC
+
+- This failure tells you that Long is not a function.
+
+- To go into detail a little, the REPL is trying to evaluate the above
+  as an expression and expects the first element to be a function.
+
+- So, how do you write a list without the REPL throwing you an exception, you quote it.
+
+#+BEGIN_SRC clojure
+'(1 2 3)
+#+END_SRC
+
+- The single quote ' escapes a sentence
+
+- A quote says “Rather than evaluating this expression’s text, simply
+  return the text itself, unchanged.”
+
+- Try: '123, '"foo", 'true
+
+- Quoting a value will return just the same value back
+
+- Quoting an expression will return that expression unevaluated
+#+BEGIN_SRC clojure
+'(+ 2 3)
+#+END_SRC
+
+*** Expressions
 #+BEGIN_SRC clojure
 (prn "Hello World")
 (+ 1 2)
@@ -138,22 +184,29 @@ Evaluate some normal functions in your REPL
   expression. Normally, Clojure code has a lot of nested parentheses,
   or in other words, nested enclosed expressions.
 
-- As you might have noticed an expression looks like a list of some kind - (1, 2, 3) is a valid s-expression.
-- LISP originally stood for LISt Processing, and lists are still at the core of the language.
-- In fact, they form the most basic way to compose expressions, or sentences.
-- A list is a single expression which has multiple parts.
-- For instance, this list - (1 2 3) - contains three elements: the numbers 1, 2, and 3.a
-- Most of the "code" that you will write wll be in the form of lists
-- We will cover more about lists when we cover collection types in Clojure.
+- As you might have noticed an expression looks like a list of some
+  kind.
+
+- LISP originally stood for LISt Processing, and lists are still at
+  the core of the language.
+
+- Most of the "code" that you will write will be in the form of lists.
+
+#+BEGIN_SRC clojure
+(+ 1 (- 4 (* 2 5)))
+#+END_SRC
 
 #+BEGIN_SRC clojure
 ()
 ( ;; see what happens
 #+END_SRC
 
-- The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
+- The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open
+  bracket to be accompanied by a corresponding closing
+  bracket. i.e. all parentheses must be "balanced".
 
-- Clojure uses whitespace to separate operands, and it treats commas as whitespace.
+- Clojure uses whitespace to separate operands, and it treats commas
+  as whitespace.
 
 #+BEGIN_SRC clojure
 (+ 1 2)
@@ -162,25 +215,79 @@ Evaluate some normal functions in your REPL
 (+, 1, 2)
 #+END_SRC
 
+*** Infix vs. prefix notation
+
+- Infix and prefix notation refer to two different ways of representing an expression
+
+**** Infix notation
+- Infix notation places the operator *in* between the operands
+
+    #+BEGIN_SRC
+    1 + 2 + 3 * 4            1 + 2 + 3 * 4
+    1 + 2 + 12               3 + 3 * 4
+    1 + 14                   6 * 4
+    15                       24
+    #+END_SRC
+
+- Infix notation should be familiar to most people.  In infix
+  notation, the order of operations is not always obvious, deciding
+  which operation should happen first requires first deciding on an
+  operator precedence hierarchy. In this case - BODMAS or PEMDAS or
+  something similar.
+
+**** Prefix notation
+
+- Prefix notation places the operator before or *pre* the operands
+
+    #+BEGIN_SRC
+    + 1 + 2 * 3 4
+    + 1 + 2 12
+    + 1 14
+    15
+    #+END_SRC
+
+- Prefix notation sidesteps the need to have an operator precedence
+  hierarchy.  Since the operands always follow the operator, there is
+  no ambiguity around which operator applies to a given operand.
+
+- Clojure uses the prefix notation, and pairs it with the
+  s-expressions and parantheses we've already seen to give us a
+  concise and unambiguous notation.
+
+  #+BEGIN_SRC clojure
+  (+ 1 2 (* 3 4))
+  (+ 1 2 12)
+  15
+  #+END_SRC
+
+
+** Simple data types - string, bool and numbers
 - In any expression, you have nouns and verbs
 *** nouns
 - Nouns are things in the world
 
-- These are the values that we pass to an expression, or what an expression evaluates to
+- These are the values that we pass to an expression, or what an
+  expression evaluates to.
 
-- The values can be of different types
+- The values can be of different types.
 
-- Most languages have some basic data types
+- Most languages have some basic data types.
 
 - number, string (text), boolean (true/false)
 
 - nil, true, 0, and "hi there!" are all different types of values
 
 *** verbs
-- Functions are the verbs in programming
-- Given some values (arguments/parameters), they return a value
+- Functions are the verbs in programming.
+- Given some values (arguments/parameters), they return a value.
+#+BEGIN_SRC clojure
+(+ 1 2)
+(prn "Hello World")
+#+END_SRC
 
-** Simple data types - string, bool and numbers
+- In the examples you have seen so far, + and prn are functions.
+
+*** basic data types
 - We have already covered what values/things are
 
 - 1, 2.5, nil, true, "hello"; these are all values
@@ -199,51 +306,16 @@ Evaluate some normal functions in your REPL
 
 - Clojure's type system is:
   - *strong* in that operations on improper types are simply not allowed
+  TODO: add examples
   - *dynamic* because they are enforced when the program is run,
     instead of when the program is first read by the computer (in
     other words, at runtime vs compile time)
 
 List of basic types:
-1) nil
+1) nil ;; TODO: check type or see how to introduce
 2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
 3) Strings: text like "hey", "cats are so nice", "ありがとう"
 4) Characters: \a, \b, \c
-
-*** Infix vs. prefix notation
-
-  Infix and prefix notation refer to two different ways of representing an expression
-  - Infix notation
-
-    Infix notation places the operator *in* between the operands
-    #+BEGIN_SRC
-    1 + 2 + 3 * 4            1 + 2 + 3 * 4
-    1 + 2 + 12               3 + 3 * 4
-    1 + 14                   6 * 4
-    15                       24
-    #+END_SRC
-    Infix notation should be familiar to most people.
-    In infix notation, the order of operations is not always obvious, deciding which operation should happen
-    first requires first deciding on an operator precedence hierarchy. In this case - BODMAS or PEMDAS or something similar.
-
-  - Prefix notation
-
-    Prefix notation places the operator before or *pre* the operands
-    #+BEGIN_SRC
-    + 1 + 2 * 3 4
-    + 1 + 2 12
-    + 1 14
-    15
-    #+END_SRC
-    Prefix notation sidesteps the need to have an operator precedence hierarchy.
-    Since the operands always follow the operator, there is no ambiguity around
-    which operator applies to a given operand.
-
-  Clojure uses the prefix notation, and pairs it with the s-expressions and parantheses we've already seen to give us a concise and unambiguous notation.
-  #+BEGIN_SRC clojure
-  (+ 1 2 (* 3 4))
-  (+ 1 2 12)
-  15
-  #+END_SRC
 
 
 
@@ -267,17 +339,6 @@ List of basic types:
 - Type inc in your REPL, you will get the meaning of what inc represents
 
 - We can also refer to symbol itself without evaluating it - `'inc`
-
-- The single quote ' escapes a sentence
-
-- A quote says “Rather than evaluating this expression’s text, simply return the text itself, unchanged.”
-
-- Try: '123, '"foo", 'true
-
-- Quoting a value will return just the sa,e value back
-
-- Quoting a symbol will return that symbol unevaluated
-
 *** def
 - We use def to bind a symbol to its value
 
@@ -862,5 +923,5 @@ Write a function to subtract points from a house using a wizard, as
 above. Try to reuse as much code as possible
 
 
-** First Program
+* First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md

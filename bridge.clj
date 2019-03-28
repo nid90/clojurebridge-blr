@@ -1,4 +1,4 @@
-;; writing all expressions here to evalute in REPL
+;; writing all expressions here to evaluate in REPL
 
 nil
 1
@@ -11,9 +11,12 @@ false
 (+ 1, 2)
 (+ 1,,,,, 2)
 (+, 1, 2)
-
 '(+ 1 2)
 (+ 3 4)
+(+ 1 (- 4 (* 2 5)))
+()
+(class ())
+(1 2 3)
 inc
 'true
 '"foo"
