@@ -24,23 +24,35 @@
 
 * Structure
 ** What is programming
-- Programming is the process of creating a set of instructions that tell a computer how to perform a task. Programming can be done using a variety of computer "languages".
+- Programming is the process of creating a set of instructions that
+  tell a computer how to perform a task. Programming can be done using
+  a variety of computer "languages".
 
-- There are many such languages to choose from. Some of the other languages you might have heard of (or will hear of!) are C, JavaScript, Python, and Java.
+- There are many such languages to choose from. Some of the other
+  languages you might have heard of (or will hear of!) are C,
+  JavaScript, Python, and Java.
 
 - And Clojure, of course.
 
-- Every program has two readers: the computer, and the human. Our job, as programmers, is to communicate clearly to both.
+- Every program has two readers: the computer, and the human. Our job,
+  as programmers, is to communicate clearly to both.
 
 
 ** What is Clojure
 - Clojure is a modern dialect of a very old family of computer languages, called Lisp.
 
-- It is also closely related to Java as it runs on the Java platform and fully supports calling Java code from Clojure (you can ignore this for now).
+- TODO history of LISP
+- John McCarthy invented Lisp in the late 1950s.
+[[./img/john-mccarthy.png]]
+
+- It is also closely related to Java as it runs on the Java platform
+  and fully supports calling Java code from Clojure (you can ignore
+  this for now).
 
 - What can you do in Clojure?
 
 - You can create web things, mobile things, sketch things [TODO - add more things and demos]
+
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
@@ -77,28 +89,80 @@
 nil
 #+END_SRC
 
+*** exercise
+Evaluate some normal functions in your REPL
+#+BEGIN_SRC clojure
+(print "I am at ClojureBridge Bangalore")
+(+ 1 2)
+(- 2 1)
+#+END_SRC
+
 
 ** Syntax, or anatomy of s-expressions
 - s-expressions or symbolic expressions
+
 #+BEGIN_SRC clojure
-(prn "Hello World") ;; evaluate this
+(prn "Hello World")
+1
+2
+"foo"
+-2
+1/2
+(+ 1 2)
 #+END_SRC
-- All Clojure code is composed of these s-expressions and all these s-expressions evaluate to a value
+- All program code is written as s-expressions, or parenthesized lists, and all s-expressions evaluate to a value.
+
+- All Clojure code is written in a uniform structure. Unlike most
+  other languages, no distinction is made between "expressions" and
+  "statements"; all code and data are written as expressions. Clojure
+  recognizes two kinds of structures:
+
+1. Literal representations of data structures (like numbers, strings, maps, and vectors)
+#+BEGIN_SRC clojure
+1
+2
+"foo"
+-2
+1/2
+#+END_SRC
+
+2. Expressions
+#+BEGIN_SRC clojure
+(prn "Hello World")
+(+ 1 2)
+#+END_SRC
 
 - Notice the parentheses. Parentheses enclose instructions to the
-  computer in Clojure. A left parenthesis is the start of the
-  instruction, and a matching right parenthesis is the end of
-  enclosing instruction. Normally, Clojure code has a lot of nested
-  parentheses, or in other words, nested enclosed instructions.
+  machine in Clojure. A left parenthesis is the start of an
+  expression, and a matching right parenthesis is the end of the
+  expression. Normally, Clojure code has a lot of nested parentheses,
+  or in other words, nested enclosed expressions.
+
+- As you might have noticed an expression looks like a list of some kind - (1, 2, 3) is a valid s-expression.
+- LISP originally stood for LISt Processing, and lists are still at the core of the language.
+- In fact, they form the most basic way to compose expressions, or sentences.
+- A list is a single expression which has multiple parts.
+- For instance, this list - (1 2 3) - contains three elements: the numbers 1, 2, and 3.a
+- Most of the "code" that you will write wll be in the form of lists
+- We will cover more about lists when we cover collection types in Clojure.
+
+#+BEGIN_SRC clojure
+()
+( ;; see what happens
+#+END_SRC
 
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open bracket to be accompanied by a corresponding closing bracket. i.e. all parentheses must be "balanced".
 
 - Clojure uses whitespace to separate operands, and it treats commas as whitespace.
 
-- All Clojure code is written in a uniform structure. Clojure recognizes two kinds of structures:
-1. Literal representations of data structures (like numbers, strings, maps, and vectors)
-2. Expressions - in any expression, you have nouns and verbs
+#+BEGIN_SRC clojure
+(+ 1 2)
+(+ 1, 2)
+(+ 1,,,,, 2)
+(+, 1, 2)
+#+END_SRC
 
+- In any expression, you have nouns and verbs
 *** nouns
 - Nouns are things in the world
 
@@ -145,7 +209,6 @@ List of basic types:
 3) Strings: text like "hey", "cats are so nice", "ありがとう"
 4) Characters: \a, \b, \c
 
-
 *** Infix vs. prefix notation
 
   Infix and prefix notation refer to two different ways of representing an expression
@@ -181,6 +244,8 @@ List of basic types:
   (+ 1 2 12)
   15
   #+END_SRC
+
+
 
 ** Special data types - symbols and keywords
 *** keywords
@@ -226,6 +291,7 @@ List of basic types:
   hard to write a program. So, we bind them to symbols so we
   can refer to them in a way we can remember.
 
+
 ** Functions
 - Functions we have seen so far
 
@@ -246,7 +312,9 @@ List of basic types:
 (+ 1 2 3 4)
 #+END_SRC
 - All Clojure operations have the same syntax: opening parenthesis, operator, operands, closing parenthesis
-- Function call is just another term for an operation where the operator is a function or a function expression (an expression that returns a function)
+- Function call is just another term for an operation where the
+  operator is a function or a function expression (an expression that
+  returns a function)
 #+BEGIN_SRC clojure
 (1 2 3 4)
 ("test" 1 2 3)
@@ -301,10 +369,16 @@ List of basic types:
 
 - All functions are created equal, there are no "special" functions. Even the core fns are the same as the ones you create.
 
-** Sequence / Collection types and associated functions
-- So far, we've dealt with discrete pieces of data: one number, one string, one value. When programming, it is more often the case that you want to work with groups of data.
 
-- Clojure has great facilities for working with these groups, or collections, of data. Not only does it provide four different types of collections, but it also provides a uniform way to use all of these collections together.
+** Sequence / Collection types and associated functions
+- So far, we've dealt with discrete pieces of data: one number, one
+  string, one value. When programming, it is more often the case that
+  you want to work with groups of data.
+
+- Clojure has great facilities for working with these groups, or
+  collections, of data. Not only does it provide four different types
+  of collections, but it also provides a uniform way to use all of
+  these collections together.
 
 *** Vectors
 - A vector is a sequential collection of values.
@@ -386,8 +460,11 @@ List of basic types:
 *** Maps
 **** key value pairs
 - Maps hold a set of keys and values associated with them.
-- You can think of it like a dictionary: you look up things using a word (a keyword) and see the definition (its value).
-- If you've programmed in another language, you might have seen something like maps--maybe called dictionaries, hashes, or associative arrays.
+- You can think of it like a dictionary: you look up things using a
+  word (a keyword) and see the definition (its value).
+- If you've programmed in another language, you might have seen
+  something like maps--maybe called dictionaries, hashes, or
+  associative arrays.
 #+BEGIN_SRC clojure
 {:first       "Harry"
  :middle     "James"
@@ -492,9 +569,12 @@ List of basic types:
 #+END_SRC
 
 *** Collection of collections
-- Simple values such as numbers, keywords, and strings are not the only types of things you can put into collections.
+- Simple values such as numbers, keywords, and strings are not the
+  only types of things you can put into collections.
 
-- You can also put other collections into collections, so you can have a vector of maps, or a list of vectors, or whatever combination fits your data.
+- You can also put other collections into collections, so you can have
+  a vector of maps, or a list of vectors, or whatever combination fits
+  your data.
 
 #+BEGIN_SRC clojure
 (def wizards [{:name  "Harry Potter"
@@ -512,10 +592,14 @@ List of basic types:
 - add Ron and Hermione to the collection of wizards
 
 - write a function to to extract points of a house given the name
+
+
 ** Context and bindings (let)
 - let is a Clojure special form, a fundamental building block of the language
 
-- When you are creating functions, you may want to assign names to values in order to reuse those values or make your code more readable.
+- When you are creating functions, you may want to assign names to
+  values in order to reuse those values or make your code more
+  readable.
 
 - Inside of a function, however, you should not use def, like you would outside of a function.
 
@@ -530,6 +614,7 @@ List of basic types:
 
 #+BEGIN_SRC clojure
 (def x 32)
+(prn x)
 (let [x 42]
   (prn x))
 #+END_SRC
@@ -555,8 +640,10 @@ List of basic types:
 
 - let also returns the last expression in
 
+
 ** Control flow and logic (if, when, do)
-- Control flow is the programming term for deciding how to react to a given circumstance. We make decisions like this all the time
+- Control flow is the programming term for deciding how to react to a
+  given circumstance. We make decisions like this all the time
 
 - If your charging station is dead, take a cab
 - If your wet and dry waste is not segregated, pay a fine to bbmp
@@ -566,7 +653,9 @@ List of basic types:
 - Most of what we do today in software is this kind of decision making
   - Is the user input valid? if yes, save her data, otherwise throw an error
 
-- Hence, changing the order of evaluation in a language is called control flow, and lets programs make decisions based on varying circumstances
+- Hence, changing the order of evaluation in a language is called
+  control flow, and lets programs make decisions based on varying
+  circumstances
 
 *** if
 
@@ -587,7 +676,9 @@ List of basic types:
 #+end_src
 
 - Truthiness:
-  - When testing the truth of an expression, Clojure considers the values nil and false to be false and everything else to be true. Here are some examples
+  - When testing the truth of an expression, Clojure considers the
+    values nil and false to be false and everything else to be
+    true. Here are some examples
 
 #+begin_src clojure
 (if "anything other than nil or false is considered true"
@@ -609,7 +700,10 @@ List of basic types:
 
 *** boolean logic
 
-- if statements are not limited to testing only one thing, you can test multiple conditions using boolean logic. Boolean logic refers to combining and changing the results of predicates using and, or, and not.
+- if statements are not limited to testing only one thing, you can
+  test multiple conditions using boolean logic. Boolean logic refers
+  to combining and changing the results of predicates using and, or,
+  and not.
 
 #+begin_src clojure
 (or 1 2)
@@ -660,7 +754,8 @@ List of basic types:
            (not (= 0 (mod year 100))))))
 #+end_src
 
-- If you’ve never seen this concept in programming before, remember that it follows the common sense way you look at things normally.
+- If you’ve never seen this concept in programming before, remember
+  that it follows the common sense way you look at things normally.
   - Is this and that true? Only if both are true.
   - Is this or that true? Yes, if either – or both! – are.
   - Is this not true? Yes, if it’s false.
@@ -681,12 +776,17 @@ List of basic types:
   (prn :there))
 #+end_src
 
-- Because there is only one path to take, when takes any number of expressions, and evaluates them only when the predicate is truthy. If the predicate evaluates to nil or false, when does not evaluate its body, and returns nil.
+- Because there is only one path to take, when takes any number of
+  expressions, and evaluates them only when the predicate is
+  truthy. If the predicate evaluates to nil or false, when does not
+  evaluate its body, and returns nil.
 
 
 *** exercise
 
-Using the control flow constructs we’ve learned, write a schedule function which, given an hour of the day, returns what you’ll be doing at that time.
+Using the control flow constructs we’ve learned, write a schedule
+function which, given an hour of the day, returns what you’ll be doing
+at that time.
 
 #+begin_src clojure
 (schedule 18) ;; for us, returns :dinner
@@ -695,7 +795,9 @@ Using the control flow constructs we’ve learned, write a schedule function whi
 
 ** Composition of functions
 
-- So far, we've seen and written functions that take in some data as arguments, perform a simple process or calculation using this data, and return some data as a result
+- So far, we've seen and written functions that take in some data as
+  arguments, perform a simple process or calculation using this data,
+  and return some data as a result
 
 - Now lets look at a function that performs a slightly more complex task
 
@@ -734,9 +836,12 @@ Using the control flow constructs we’ve learned, write a schedule function whi
     (update-in houses [house :points] + points))
   #+end_src
 
-- Clojure allows us to pass in the result of one function as an argument to another function. This is referred to as "Function Composition"
+- Clojure allows us to pass in the result of one function as an
+  argument to another function. This is referred to as "Function
+  Composition"
 
-  - Lets compose our get-wizards-house and add-points-to-house functions into a third function so we can add points using wizards
+  - Lets compose our get-wizards-house and add-points-to-house
+    functions into a third function so we can add points using wizards
   #+begin_src clojure
   (defn add-points-by-wizard [points wizard]
     (add-points-to-house points (get-wizards-house wizard)))
@@ -746,11 +851,16 @@ Using the control flow constructs we’ve learned, write a schedule function whi
   (add-points-by-wizard 100 :cedric)
 #+end_src
 
-- We can use function composition to build up a complex multi-step computation or process using small, simple, and reusable functions.
-  This makes it much easier to reason about our code in bite-sized pieces and helps keep repetition down to a minimum
+- We can use function composition to build up a complex multi-step
+  computation or process using small, simple, and reusable functions.
+  This makes it much easier to reason about our code in bite-sized
+  pieces and helps keep repetition down to a minimum
 
 *** exercise
 
-Write a function to subtract points from a house using a wizard, as above. Try to reuse as much code as possible
+Write a function to subtract points from a house using a wizard, as
+above. Try to reuse as much code as possible
+
+
 ** First Program
 - https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md

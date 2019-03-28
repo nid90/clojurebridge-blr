@@ -3,9 +3,16 @@
 nil
 1
 2
+(print (eval (read)))
 true
 false
 (prn "Hello World")
+(+ 1 2)
+(+ 1, 2)
+(+ 1,,,,, 2)
+(+, 1, 2)
+
+'(+ 1 2)
 (+ 3 4)
 inc
 'true
