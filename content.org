@@ -9,14 +9,14 @@
   these folks have created.
 
 - This workshop is aimed specifically at women. Why? In the past 7
-  years of my engineering career I have seen the disparity in gender
-  ratio at all the companies I have worked with. In some teams, I was
-  the only female developer. In some teams, I was the only female. I
-  have never had a female mentor before. But, I have also seen
-  companies change, grow, become more aware of this lacking, and
-  find ways to fix it. This is a small attempt towards that. Getting more
-  females to learn programming, learn Clojure and do awesome things
-  that comes with ability to command a computer.
+  years of my engineering career I have seen the disparity in the
+  gender ratio at all the companies I have worked with. In some teams,
+  I was the only female developer. In some teams, I was the only
+  female. I have never had a female mentor before. But, I have also
+  seen companies change, grow, become more aware of this issue, and
+  find ways to fix it. This is a small attempt towards that. Getting
+  more females to learn programming, learn Clojure and do awesome
+  things that come with ability to command a computer.
 
 - To quote aphyr - "So before we begin, I want to reinforce that you
   can program, that you can do math, that you can design car
