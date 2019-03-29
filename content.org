@@ -44,9 +44,15 @@
 - Clojure is a modern dialect of a very old family of computer
   languages, called Lisp.
 
-- TODO history of LISP
-- John McCarthy invented Lisp in the late 1950s.
-[[./img/john-mccarthy.png]]
+- Lisp is one of the oldest of all programming languages, invented by
+  John McCarthy in 1958. [[./img/john-mccarthy.png]]
+
+- The original language spawned many variant dialects, the most
+  predominant of which today are Common Lisp and Scheme.
+
+- Clojure (pronounced "closure") is a new dialect of Lisp created by
+  Rich Hickey. Like Scheme, Clojure is a functional dialect, meaning
+  that it supports and encourages programming in a "functional style".
 
 - It is also closely related to Java as it runs on the Java platform
   and fully supports calling Java code from Clojure (you can ignore
@@ -56,7 +62,6 @@
 
 - You can create web things, mobile things, sketch things [TODO - add
   more things and demos]
-
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
