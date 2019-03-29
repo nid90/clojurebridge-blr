@@ -3,7 +3,7 @@
 nil
 1
 2
-(print (eval (read)))
+(comment (print (eval (read))))
 true
 false
 (prn "Hello World")
