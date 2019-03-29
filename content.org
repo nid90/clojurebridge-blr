@@ -60,8 +60,12 @@
 
 - What can you do in Clojure?
 
-- You can create web things, mobile things, sketch things [TODO - add
-  more things and demos]
+- You can create web things, mobile things, sketch
+  things. Practically, it is good for writing web async servers,
+  running parallel tasks, simulations, data pipelines etc.
+
+- A quick fun demo of live coding Flappy Bird in Clojure -
+  https://www.youtube.com/watch?v=KZjFVdU8VLI
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
