@@ -8,6 +8,8 @@
 - We have taken most of our ideas for this workshop from the content
   these folks have created.
 
+- Also, thanks to nilenso, IN/Clojure and ClojureBridge core team.
+
 - This workshop is aimed specifically at women. Why? In the past 7
   years of my engineering career I have seen the disparity in the
   gender ratio at all the companies I have worked with. In some teams,
@@ -18,11 +20,11 @@
   more females to learn programming, learn Clojure and do awesome
   things that come with ability to command a computer.
 
-- To quote aphyr - "So before we begin, I want to reinforce that you
-  can program, that you can do math, that you can design car
-  suspensions and fire suppression systems and spacecraft control
-  software and distributed databases, regardless of what your
-  classmates and media and even fellow engineers think."
+- "So before we begin, I want to reinforce that you can program, that
+  you can do math, that you can design car suspensions and fire
+  suppression systems and spacecraft control software and distributed
+  databases, regardless of what your classmates and media and even
+  fellow engineers think." - aphyr
 
 * Structure
 ** What is programming
@@ -38,6 +40,7 @@
 
 - Every program has two readers: the computer, and the human. Our job,
   as programmers, is to communicate clearly to both.
+
 
 ** What is Clojure
 - Clojure is a modern dialect of a very old family of computer
