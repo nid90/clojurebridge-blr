@@ -26,6 +26,8 @@
   databases, regardless of what your classmates and media and even
   fellow engineers think." - aphyr
 
+- https://tinyurl.com/clj-bridge-blr
+-> outline.org
 * Structure
 ** What is programming
 - Programming is the process of creating a set of instructions that
@@ -165,7 +167,8 @@ Evaluate some normal functions in your REPL
 - To go into detail a little, the REPL is trying to evaluate the above
   as an expression and expects the first element to be a function.
 
-- So, how do you write a list without the REPL throwing you an exception, you quote it.
+- So, how do you write a list without the REPL throwing you an
+  exception, you quote it.
 
 #+BEGIN_SRC clojure
 '(1 2 3)
@@ -269,7 +272,7 @@ Evaluate some normal functions in your REPL
 
   #+BEGIN_SRC clojure
   (+ 1 2 (* 3 4))
-  (+ 1 2 12)
+  (+ 1 2 12 6 7 8 9 10 63 37826)
   15
   #+END_SRC
 
@@ -319,16 +322,19 @@ Evaluate some normal functions in your REPL
 
 - Clojure's type system is:
   - *strong* in that operations on improper types are simply not allowed
-  TODO: add examples
+
+   #+BEGIN_SRC clojure
+   (+ "invalid number" 2)
+   #+END_SRC
+
   - *dynamic* because they are enforced when the program is run,
     instead of when the program is first read by the computer (in
     other words, at runtime vs compile time)
 
 List of basic types:
-1) nil ;; TODO: check type or see how to introduce
-2) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
-3) Strings: text like "hey", "cats are so nice", "ありがとう"
-4) Characters: \a, \b, \c
+1) Numbers: Integer, Ratio, Float - 1, 3/4, 2.5
+2) Strings: text like "hey", "cats are so nice", "ありがとう"
+3) Characters: \a, \b, \c
 
 
 ** Special data types - symbols and keywords
@@ -338,6 +344,13 @@ List of basic types:
 - eg - :foo, :bar
 
 - Special because they are symbolic identifiers that evaluate to themselves
+
+#+BEGIN_SRC clojure
+:foo
+#+END_SRC
+
+- They provide very fast equality tests and are most commonly used as
+  keys in a map. (more on this map later)
 
 *** symbols
 - Identifiers that are used to refer to something else
@@ -375,27 +388,37 @@ List of basic types:
 (inc 42)
 #+END_SRC
 
-- A function is an independent, discrete piece of code that takes in some values (called arguments) and returns a value
+- A function is an independent, discrete piece of code that takes in
+  some values (called arguments) and returns a value
 
-- Each function takes in zero or more number of arguments and returns one value
+- Each function takes in zero or more number of arguments and returns
+  one value
 
 *** calling a function
 - By now you’ve seen many examples of function calls
+
 #+BEGIN_SRC clojure
 (+ 1 2 3 4)
 #+END_SRC
-- All Clojure operations have the same syntax: opening parenthesis, operator, operands, closing parenthesis
+
+- All Clojure operations have the same syntax: opening parenthesis,
+  operator, operands, closing parenthesis.
+
 - Function call is just another term for an operation where the
   operator is a function or a function expression (an expression that
   returns a function)
+
 #+BEGIN_SRC clojure
 (1 2 3 4)
 ("test" 1 2 3)
 #+END_SRC
-- The above examples are not valid function calls as the operator is not a function
+
+- The above examples are not valid function calls as the operator is
+  not a function
 - Evaulate them to see what result you get
 - You might see that exception a lot while coding in Clojure
-- <x> cannot be cast to clojure.lang.IFn just means that you’re trying to use something as a function when it’s not
+- <x> cannot be cast to clojure.lang.IFn just means that you’re trying
+  to use something as a function when it’s not
 
 *** write your own function
 
@@ -403,6 +426,7 @@ List of basic types:
 #+BEGIN_SRC clojure
 (defn same [x] x)
 #+END_SRC
+
 - Function definitions are composed of five main parts:
 1. defn
 2. Function name
@@ -410,14 +434,28 @@ List of basic types:
 4. Parameters listed in brackets
 5. Function body
 
-- In the above example, you have defined a fn that takes an argument and returns it back
+- In the above example, you have defined a fn that takes an argument
+  and returns it back
 - Try it out
+
 #+BEGIN_SRC clojure
 (same 42)
 (same "am I the same")
 (same :foo)
 #+END_SRC
-- Exercise: write a function to add 10 to a number
+
+**** exercise
+- write a function to add 42 to a number.
+
+- Define a function greeting which:
+
+1. Given no arguments, returns "Hello, World!"
+
+2. Given one argument x, returns "Hello, x!"
+
+3. Given two arguments x and y, returns "x, y!"
+
+;; Hint use the str function to concatenate strings
 
 **** fn
 - This is another way of defining a fn
@@ -427,7 +465,7 @@ List of basic types:
 
 - You can also write functions without any names
 #+BEGIN_SRC clojure
-(fn same [x] x)
+(fn [x] x)
 #+END_SRC
 
 - The function body can contain forms of any kind
@@ -442,6 +480,17 @@ List of basic types:
 
 - All functions are created equal, there are no "special" functions. Even the core fns are the same as the ones you create.
 
+**** exercise
+- Define a function make-thingy which takes a single argument x. It
+  should return another function, which takes any number of arguments
+  and always returns x.
+
+#+BEGIN_SRC clojure
+((make-thingy 1) 2)
+;=> 1
+#+END_SRC
+
+;; this is the definition of the function `constantly` in Clojure.
 
 ** Sequence / Collection types and associated functions
 - So far, we've dealt with discrete pieces of data: one number, one
@@ -460,15 +509,18 @@ List of basic types:
 
 - A vector may contain values of different types.
 
-- Each value in a vector is numbered starting at 0, that number is called its index.
+- Each value in a vector is numbered starting at 0, that number is
+  called its index.
 
 - The index is used to refer to each value when looking them up.
 
-- To imagine a vector, imagine a box split into some number of equally-sized compartments.
+- To imagine a vector, imagine a box split into some number of
+  equally-sized compartments.
 
 - Each of those compartments has a number.
 
-- You can put a piece of data inside each compartment and always know where to find it, as it has a number.
+- You can put a piece of data inside each compartment and always know
+  where to find it, as it has a number.
 
 #+BEGIN_SRC
    0     1     2     3     4     5
@@ -477,10 +529,13 @@ List of basic types:
 |-----+-----+-----+-----+-----+----|
 #+END_SRC
 
-- Note that the numbers start with 0. That may seem strange, but we often count from zero when programming.
+- Note that the numbers start with 0. That may seem strange, but we
+  often count from zero when programming.
 
 **** Syntax
-- Vectors are written using square brackets with any number of pieces of data inside them, separated by spaces.
+- Vectors are written using square brackets with any number of pieces
+  of data inside them, separated by spaces.
+
 - Examples:
 #+BEGIN_SRC clojure
 [1 2 3 4 5]
@@ -490,10 +545,19 @@ List of basic types:
 
 **** Creation
 - The next two functions are used to make new vectors.
-- The vector function takes any number of items and puts them in a new vector.
-- `conj` is an interesting function that you'll see used with all the data structures.
-- With vectors, it takes a vector and an item and returns a new vector with that item added to the end of the vector.
-- Why the name conj? conj is short for conjoin, which means to join or combine.
+
+- The vector function takes any number of items and puts them in a new
+  vector.
+
+- `conj` is an interesting function that you'll see used with all the
+  data structures.
+
+- With vectors, it takes a vector and an item and returns a new vector
+  with that item added to the end of the vector.
+
+- Why the name conj? conj is short for conjoin, which means to join or
+  combine.
+
 - This is what we're doing: we're joining the new item to the vector.
 #+BEGIN_SRC clojure
 (vector 5 10 15)
@@ -505,29 +569,37 @@ List of basic types:
 
 **** Extraction
 - Now, take a look at these four functions.
+
+***** count
 - count gives us a count of the number of items in a vector.
 #+BEGIN_SRC clojure
 (count [5 10 15])
 ;=> 3
 #+END_SRC
+
+***** nth
 - nth gives us the nth item in the vector.
 #+BEGIN_SRC clojure
 (nth [5 10 15] 1)
 ;=> 10
 #+END_SRC
 - Note that we start counting at 0, so in the example, calling nth with the number 1 gives us what we'd call the second element when we aren't programming.
+
+***** first
 - first returns the first item in the collection.
 #+BEGIN_SRC clojure
 (first [5 10 15])
 ;=> 5
 #+END_SRC
+
+***** rest
 - rest returns all except the first item.
 #+BEGIN_SRC clojure
 (rest [5 10 15])
 ;=> (10 15)
 #+END_SRC
-- Try not to think about that and nth at the same time, as they can be confusing.
 
+- Try not to think about that and nth at the same time, as they can be confusing.
 
 
 *** Maps
@@ -539,29 +611,35 @@ List of basic types:
   something like maps--maybe called dictionaries, hashes, or
   associative arrays.
 #+BEGIN_SRC clojure
-{:first       "Harry"
+{:first      "Harry"
  :middle     "James"
  :last       "Potter"
  :occupation "Auror"}
 #+END_SRC
 
 **** Syntax
-- We write maps by enclosing alternating keys and values in curly braces, like above.
-- Maps are useful because they can hold data in a way we normally think about it.
+- We write maps by enclosing alternating keys and values in curly
+  braces, like above.
+- Maps are useful because they can hold data in a way we normally
+  think about it.
 - Take our made up example, Harry Potter.
-- A map can hold his first name, middle name and last name, his occupation, or anything else.
+- A map can hold his first name, middle name and last name, his
+  occupation, or anything else.
 - It's a simple way to collect that data and make it easy to look up.
-#+BEGIN_SRC clojur
+#+BEGIN_SRC clojure
 {:a 1 :b "two"}
 #+END_SRC
-- This example is an empty map. It is a map that is ready to hold some things, but doesn't have anything in it yet.
+- This example is an empty map. It is a map that is ready to hold some
+  things, but doesn't have anything in it yet.
 #+BEGIN_SRC clojure
 {}
 #+END_SRC
 
 **** Creation
-- assoc and dissoc are paired functions: they associate and disassociate items from a map.
-- See how we add the last name "Granger" to the map with assoc, and then we remove it with dissoc.
+- assoc and dissoc are paired functions: they associate and
+  disassociate items from a map.
+- See how we add the last name "Granger" to the map with assoc, and
+  then we remove it with dissoc.
 #+BEGIN_SRC clojure
 (assoc {:first "Hermione"} :last "Granger")
 ;=> {:first "Hermione", :last "Granger"}
@@ -569,6 +647,7 @@ List of basic types:
 (dissoc {:first "Hermione" :last "Granger"} :last)
 ;=> {:first "Hermione"}
 #+END_SRC
+
 - merge merges two maps together to make a new map.
 #+BEGIN_SRC clojure
 (merge {:first "Hermione"} {:last "Granger"})
@@ -581,8 +660,10 @@ List of basic types:
 (count {:first "Hermione" :last "Granger"})
 ;=> 2
 #+END_SRC
--  Why do you think the answer is two? count is returning the number of associations.
-- Since map is a key-value pair, the key is used to get a value from a map.
+- Why do you think the answer is two? count is returning the number of
+  associations.
+- Since map is a key-value pair, the key is used to get a value from a
+  map.
 - One of the ways often used in Clojure is the examples below.
 #+BEGIN_SRC clojure
 (get {:first "Hermione" :last "Granger"} :first)
@@ -593,9 +674,11 @@ List of basic types:
 (get {:first "Hermione"} :last "NA")
 ;=> "NA"
 #+END_SRC
-- In the last example, we supplied a backup value "NA". This works when the key we asked for is not in the map.
+- In the last example, we supplied a backup value "NA". This works
+  when the key we asked for is not in the map.
 
-- We can use also use keyword like using a function in order to look up values in a map.
+- We can use also use keyword like using a function in order to look
+  up values in a map.
 #+BEGIN_SRC clojure
 (:first {:first "Hermione" :last "Granger"})
 ;=> "Hermione"
@@ -633,7 +716,8 @@ List of basic types:
 (update hello :words str ", world")
 ;=> {:count 1, :words "hello, world"}
 #+END_SRC
-- The update-in function works like update, but takes a vector of keys to update at a path to a nested map.
+- The update-in function works like update, but takes a vector of keys
+  to update at a path to a nested map.
 #+BEGIN_SRC clojure
 (def mine {:pet {:age 5 :name "able"}})
 
@@ -679,6 +763,7 @@ List of basic types:
 - Instead, you should use a special form called let.
 
 - Like def, let creates a binding
+
 #+BEGIN_SRC clojure
 (let [mangoes 3
       oranges 5]
@@ -700,6 +785,8 @@ List of basic types:
 
 - Clojure’s lexically bound variables are available to use in a limited code block (scope)
 
+- Names defined in a let take precedence over the names in the outer context.
+
 - Write as many bindings (key-value pairs) as we want within the square brackets
 
 #+BEGIN_SRC clojure
@@ -711,7 +798,7 @@ List of basic types:
   x)
 #+END_SRC
 
-- let also returns the last expression in
+- let also returns the last value in its body
 
 
 ** Control flow and logic (if, when, do)

@@ -1,16 +1,30 @@
 ;; writing all expressions here to evaluate in REPL
 
+
 nil
 1
 2
 (comment (print (eval (read))))
+
+(quote (+ 1 (- 4 (* 2 5))))
+
+'()
+
+;; (loop (print (eval (read))))
 true
 false
 (prn "Hello World")
 (+ 1 2)
+
 (+ 1, 2)
+(+ 1)
 (+ 1,,,,, 2)
 (+, 1, 2)
+
+(doc +)
+
+(+ 1 2 3 4 5 6 7)
+
 '(+ 1 2)
 (+ 3 4)
 (+ 1 (- 4 (* 2 5)))
@@ -24,6 +38,11 @@ inc
 (class 3/4)
 (class nil)
 (class \c)
+
+(+ "invalid number" 2)
+:foo
+inc
+
 (conj [1 2 3] 4)
 (conj [1 2 3] 4 5)
 (conj [1 2 3] "foo")
