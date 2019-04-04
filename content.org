@@ -1,7 +1,7 @@
 * Preface
 - First off, I would like to thank all these people and groups for
   having created great content for clojure workshops.
-  - Aditya Athale
+  - Aditya Athalye
   - Kyle Kingsbury (aphyr)
   - ClojureBridge Berlin and London
 
