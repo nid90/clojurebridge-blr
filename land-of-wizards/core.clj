@@ -1,6 +1,7 @@
-(ns land-of-wizards.core
-  (:require [land-of-wizards.data :refer [nodes edges objects object-locations]]
-            [clojure.string :as str]))
+(ns core
+  (:require [clojure.string :as str]))
+
+(clojure.main/load-script "data.clj")
 
 (comment "The first command we'd want to have is a command that tells us about the location we're standing in. So what would a function need to describe a location in a world? Well, it would need to know the location we want to describe and would need to be able to look at a map and find that location on the map. Here's our function, and it does exactly that")
 
@@ -33,15 +34,19 @@
 
 (describe-all-paths edges :living-room)
 
-(defn objects-at
-  [location object-locations]
-  (map first (get (group-by second object-locations) location)))
+(comment "We want to get all the objects at a given location. This is a function that does just that.")
 
-(objects-at :living-room object-locations)
+(defn objects-at-location
+  [location object-locations]
+  (get object-locations location))
+
+(objects-at-location :living-room object-locations)
+
+(comment "To describe all the objects at a given location, we use the `objects-at-location` function to get a collection (in this case a vector) of all the objects at the location, and then invoke the function stored in `object-whereabouts` on all elements of the collection by using `map`. `map` returns a lazy sequence of elements (which in this case are strings). We join the strings in this sequence to form a single string.")
 
 (defn describe-objects [location object-locations]
   (let [object-whereabouts #(str "You see a " (name %) " on the floor.")]
-    (str/join " " (map object-whereabouts (objects-at location object-locations)))))
+    (str/join " " (map object-whereabouts (objects-at-location location object-locations)))))
 
 (describe-objects :living-room object-locations)
 

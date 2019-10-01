@@ -1,4 +1,4 @@
-(ns land-of-wizards.data)
+(ns data)
 
 (comment "Clojure provides a data structure called a Map. A Map is created by as mappings of values to their respective keys like so:  order key1 value1 key2 value2... Our game-map variable is also a Map - the three keys here living-room, garden, and attic. The following maps contain everything important that we'd like to know about our three locations:")
 
@@ -23,10 +23,8 @@
 
 (comment "Now that we have a map and a bunch of objects, it makes sense to create another variable that says where each of these object is on the map:")
 
-(def object-locations {:whiskey :living-room
-                       :bucket  :living-room
-                       :chain   :garden
-                       :frog    :garden})
+(def object-locations {:living-room [:whiskey :bucket]
+                       :garden      [:chain :frog]})
 
 (comment  "Given the information above, we intend to:
 1. Describe the location the wizard is at.
