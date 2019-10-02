@@ -26,7 +26,7 @@
 
 (comment "Now there's a function to describe all paths in and out of wizard's current location. This function uses another common functional programming technique: The use of Higher Order Functions - This means that the map function is taking other functions as parameters so that they can call them themselves - map simply applies another function to every object in the collection (in this case a list) returned by `(keys (location edges))`, basically causing all paths to be changed into pretty descriptions procided by the describe-path function.")
 
-(defn describe-all-paths [edges location]
+(defn describe-all-paths [location edges]
   (str/join " " (map #(describe-path edges location %) (keys (location edges)))))
 
 #_ (describe-all-paths edges :living-room)
@@ -45,7 +45,7 @@
         objects-at-location (objects-at location location->objects)]
     (str/join " " (map object-whereabouts-description objects-at-location))))
 
-#_ (describe-objects :living-room location->objects)
+#_ (describe-objects-at :living-room location->objects)
 
 (comment "`look` ties all these descriptor functions into a single, easy command called `look`` that uses the global variables (therefore this function is not in the Functional Style) to feed all the descriptor functions and describes everything")
 

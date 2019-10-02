@@ -31,4 +31,4 @@
 2. Describe the paths from wizard's current location to another given location.
 3. Describe all the paths in and out of wizard's current location
 4. Describe all the objects at wizard's current location
-5. Write a function that ties up all the above functionality to")
+5. Write a function that ties up all the above functionality")
