@@ -4,7 +4,7 @@ The game is played between two teams. For the purpose of this program, we are go
 
 These are the moves allowed in our version of Quidditch:
 1. Score (send the quaffle through the goalpost to get 10 points)
-2. Beat (hit teh other team player to make them lose 10 points)
+2. Beat (hit the other team player to make them lose 10 points)
 3. Catch the snitch (get 150 points and end the game)
 
 At the end of the game, whichever team has the most points wins.
@@ -46,7 +46,7 @@ Additionally, try adding these constraints:
 1. Once a game has ended, no team should be allowed to make a move. How will you handle that?
 2. Introduce a new move. How about a foul? If a team fouls, the other team gets a free hit with a random chance of getting a score!
 
-This is hjow the final game will look like:
+This is how the final game will look like:
 #+BEGIN_SRC clojure
 (-> (start-game :gryffindor :slytherin)
     (score :gryffindor)
