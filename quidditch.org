@@ -1,6 +1,6 @@
 * Write a clojure program to play the game of Quidditch (almost).
 
-The game is played between two teams. For the purpose of this program, we are gonna simplify (and modify) them a little.
+The game is played between two teams. For the purpose of this program, we are gonna simplify (and modify) the rules a little.
 
 These are the moves allowed in our version of Quidditch:
 1. Score (send the quaffle through the goalpost to get 10 points)
