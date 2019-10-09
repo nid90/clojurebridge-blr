@@ -12,7 +12,7 @@
 (comment "The edges map contains information about the where and how of each path into/out of that place. Notice how information-rich this one variable is and how it describes all that's  needed to know but not a thing more - Lispers love to create small, concise pieces of code that leave out any fat and are easy to understand just by looking at them.")
 
 (def edges
-  {:living-room {:garden [:west :door],
+  {:living-room {:garden [:west :door]
                  :attic  [:upstairs :ladder]}
    :garden      {:living-room [:east :door]}
    :attic       {:living-room [:downstairs :ladder]}})
