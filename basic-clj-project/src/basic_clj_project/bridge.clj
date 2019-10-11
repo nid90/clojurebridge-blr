@@ -1,5 +1,6 @@
-;; writing all expressions here to evaluate in REPL
+(ns basic-clj-project.bridge)
 
+;; writing all expressions here to evaluate in REPL
 
 nil
 1
@@ -12,7 +13,7 @@ nil
 
 ;; (loop (print (eval (read))))
 true
-false
+;false
 (prn "Hello World")
 (+ 1 2)
 
@@ -21,7 +22,6 @@ false
 (+ 1,,,,, 2)
 (+, 1, 2)
 
-(doc +)
 
 (+ 1 2 3 4 5 6 7)
 
@@ -30,7 +30,7 @@ false
 (+ 1 (- 4 (* 2 5)))
 ()
 (class ())
-(1 2 3)
+'(1 2 3)
 inc
 'true
 '"foo"
@@ -39,7 +39,7 @@ inc
 (class nil)
 (class \c)
 
-(+ "invalid number" 2)
+(comment (+ "invalid number" 2))
 :foo
 inc
 
@@ -47,7 +47,7 @@ inc
 (conj [1 2 3] 4 5)
 (conj [1 2 3] "foo")
 (+ 1 2)
-(1 2 3 4)
+(comment (1 2 3 4))
 ((fn same [x] x) 42)
 (let [x 1
       y 1
