@@ -3,15 +3,16 @@ The workshop will be conducted over two days.
 **** First Day - Installation and REPL [1.5 hours | 6:30 PM to 8:00 PM]
 
 We will go over installation on IDEs and setup of development
-environment on all attendees laptops. We'll use [[https://cursive-ide.com/][Cursive]] which should
+environment on all attendees laptops. We'll use [[https://sekao.net/nightcode][NightCode]] which should
 work out of the box on most OSes. It will prompt you to install JDK
 and JRE, please do that.
 
-Once Cursive (IntelliJ) is setup, one can [[https://github.com/nid90/clojurebridge-blr/archive/master.zip][download]] this repository on their
-machines and open it in the IDE. The directory contains a file
-called *bridge.clj* which can then be opened up with the *REPL*
-in Cursive. We will show the attendees how to evaluate the content of the file in the REPL.
-This file has some very basic opening content that one can evaluate, we'll build upon it as we
+Once NightCode is setup, one can [[https://github.com/nid90/clojurebridge-blr/archive/master.zip][download]] this repository on their
+machines and open it in NightCode. The directory contains a file
+called *bridge.clj* which can then be opened up with the *InstaREPL*
+feature of NightCode. InstaREPL automatically evaluates every
+expression in the file on the left-hand pane. This file has some very
+basic opening content that one can evaluate, we'll build upon it as we
 go through the lessons.
 
 After installation, we will go over the following topics on the first day:
