@@ -1,14 +1,5 @@
 * Preface
-- First off, I would like to thank all these people and groups for
-  having created great content for clojure workshops.
-  - Aditya Athalye
-  - Kyle Kingsbury (aphyr)
-  - ClojureBridge Berlin and London
-
-- We have taken most of our ideas for this workshop from the content
-  these folks have created.
-
-- Also, thanks to nilenso, IN/Clojure and ClojureBridge core team.
+** What is ClojureBridge?
 
 - This workshop is aimed specifically at women. Why? In the past 7
   years of my engineering career I have seen the disparity in the
@@ -26,6 +17,18 @@
   databases, regardless of what your classmates and media and even
   fellow engineers think." - aphyr
 
+- A quick round of thanks before we start. We would like to thank all
+  these people and groups for having created great content for clojure
+  workshops.
+  - Aditya Athalye
+  - Kyle Kingsbury (aphyr)
+  - ClojureBridge Berlin and London
+
+- We have taken most of our ideas for this workshop from the content
+  these folks have created.
+
+- Also, thanks to nilenso, IN/Clojure and ClojureBridge core team.
+
 - https://tinyurl.com/clj-bridge-blr
 -> outline.org
 * Structure
@@ -36,7 +39,7 @@
 
 - There are many such languages to choose from. Some of the other
   languages you might have heard of (or will hear of!) are C,
-  JavaScript, Python, and Java.
+  JavaScript, Python, and Java etc.
 
 - And Clojure, of course.
 
@@ -49,7 +52,8 @@
   languages, called Lisp.
 
 - Lisp is one of the oldest of all programming languages, invented by
-  John McCarthy in 1958. [[./img/john-mccarthy.png]]
+  John McCarthy in 1958.
+ [[./img/john-mccarthy.png]]
 
 - The original language spawned many variant dialects, the most
   predominant of which today are Common Lisp and Scheme.
@@ -75,21 +79,21 @@
 
 ** Why Clojure
 - Clojure is *simple*. That’s not to say it’s not powerful; it is. The
-  number of concepts you have to know to program in Clojure is very
-  small, however, and easy to grasp. Clojure grows with you as you
-  learn it, and you can be very productive with a small subset of the
-  language.
+  number of concepts you have to know to start programming in Clojure
+  is very small, however, and easy to grasp. Clojure grows with you as
+  you learn it, and you can be very productive with a small subset of
+  the language.
 
 - Clojure is *all-purpose*. Some languages have a specific
   focus. JavaScript, for example, was traditionally used only in web
   pages (although that’s changed somewhat). Objective-C is used mainly
-  for iPhone apps. We’re going to make a drawing application today,
-  but you can use Clojure for any sort of application easily.
+  for iPhone apps. We’re going to write small fun programs today, but
+  you can use Clojure for any sort of application easily.
 
-- Clojure is *fun*. That’s a matter of opinion, of course, but we think
-  it holds true. I hope that during this course you experience the joy
-  of seeing a Clojure program come together and do something powerful
-  and surprising.
+- Clojure is *fun*. That’s a matter of opinion, of course, but we
+  think it holds true for most people who use Clojure. I hope that
+  during this course you experience the joy of seeing a Clojure
+  program come together and do something powerful and surprising.
 
 
 ** Understanding the REPL
@@ -152,9 +156,9 @@ Evaluate some normal functions in your REPL
 1/2
 '(1 2 3)
 #+END_SRC
-
-*** quote (escape the E in REPL)
-- The last literal in the above list is a list.
+- we will go into these data structures later
+**** quote (escape the E in REPL)
+- The last literal in the above list is a list (a list of numbers).
 
 - Notice the quote in front of it. Try evaulating it without the quote:
 
@@ -214,7 +218,7 @@ Evaluate some normal functions in your REPL
 
 #+BEGIN_SRC clojure
 ()
-( ;; see what happens
+( ;; see what happens (you can't because your editor is too smart)
 #+END_SRC
 
 - The Clojure "Reader" (the 'R' part of the R.E.P.L) expects each open
@@ -229,9 +233,11 @@ Evaluate some normal functions in your REPL
 (+ 1, 2)
 (+ 1,,,,, 2)
 (+, 1, 2)
+;; you can even do this!
+(,+ 1 2)
 #+END_SRC
 
-*** Infix vs. prefix notation
+**** Infix vs. prefix notation
 
 - Infix and prefix notation refer to two different ways of representing an expression
 
@@ -432,7 +438,8 @@ List of basic types:
 2. Function name
 3. A docstring describing the function (optional)
 4. Parameters listed in brackets
-5. Function body
+5. Function body (a list of expressions that will get evaluated when
+   the fn is called)
 
 - In the above example, you have defined a fn that takes an argument
   and returns it back
@@ -478,7 +485,16 @@ List of basic types:
   "foo")
 #+END_SRC
 
-- All functions are created equal, there are no "special" functions. Even the core fns are the same as the ones you create.
+- All functions are created equal, there are no "special"
+  functions. Even the core fns are the same as the ones you create.
+
+#+BEGIN_SRC clojure
+(defn + [x y] (- x y)) ;; you can change anything you want
+#+END_SRC
+
+- But remember, with great power comes great responsibility
+
+
 
 **** exercise
 - Define a function make-thingy which takes a single argument x. It
@@ -541,6 +557,7 @@ List of basic types:
 [1 2 3 4 5]
 [56.9 60.2 61.8 63.1 54.3 66.4 66.5 68.1 70.2 69.2 63.1 57.1]
 []
+[1 "abc" :foo]
 #+END_SRC
 
 **** Creation
@@ -583,12 +600,15 @@ List of basic types:
 (nth [5 10 15] 1)
 ;=> 10
 #+END_SRC
-- Note that we start counting at 0, so in the example, calling nth with the number 1 gives us what we'd call the second element when we aren't programming.
+- Note that we start counting at 0, so in the example, calling nth
+  with the number 1 gives us what we'd call the second element when we
+  aren't programming.
 
 ***** first
 - first returns the first item in the collection.
 #+BEGIN_SRC clojure
 (first [5 10 15])
+(nth [5 10 15] 0)
 ;=> 5
 #+END_SRC
 
@@ -599,7 +619,8 @@ List of basic types:
 ;=> (10 15)
 #+END_SRC
 
-- Try not to think about that and nth at the same time, as they can be confusing.
+- Try not to think about that and nth at the same time, as they can be
+  confusing.
 
 
 *** Maps
@@ -689,7 +710,8 @@ List of basic types:
 ;=> "NA"
 #+END_SRC
 
-- Then we have keys and vals, which are pretty simple: they return the keys and values in the map.
+- Then we have keys and vals, which are pretty simple: they return the
+  keys and values in the map.
 #+BEGIN_SRC clojure
 (keys {:first "Hermione" :last "Granger"})
 ;=> (:first :last)
@@ -697,7 +719,8 @@ List of basic types:
 (vals {:first "Hermione" :last "Granger"})
 ;=> ("Hermione" "Granger")
 #+END_SRC
-- The order is not guaranteed, so we could have gotten (:first :last) or (:last :first).
+- The order is not guaranteed, so we could have gotten (:first :last)
+  or (:last :first).
 
 **** Update
 - After the creation, we want to save a new value associated to the key.
@@ -1020,7 +1043,3 @@ at that time.
 
 Write a function to subtract points from a house using a wizard, as
 above. Try to reuse as much code as possible
-
-
-* First Program
-- https://github.com/ClojureBridge/drawing/blob/master/curriculum/first-program.md
