@@ -1,6 +1,6 @@
 # ClojureBridge BLR
 
-### [bridge.clj](bridge.clj)
+### [bridge.clj](basic-clj-project/src/basic_clj_project/bridge.clj)
 
 This is a starting point to supplement the workshop. It has a handful of expressions you can simply evaluate in the [InstaREPL](https://sekao.net/nightcode).
 
