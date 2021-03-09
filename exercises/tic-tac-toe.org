@@ -1,4 +1,4 @@
-* Write a clojure program to play tic-tac-toe!! XOXO!
+* Write a clojure program to play tic-tac-toe!! XOXO
 
   The game is played between two players on a 3x3 board.
 
@@ -55,17 +55,17 @@
 ;=> returns the board itself after printing it on the REPL
   #+END_SRC
 
+  Wait what, X just wrote over O's previous move. Get the referee!!!
+  #+BEGIN_SRC clojure
+(defn reject-illegal-move [board])
+;=> should generate exception or the appropriate msg you want to display to users
+  #+END_SRC
+
   A player can update the board, and we see what they played as well.
   But how are these players getting turns? What if X plays twice in a row.
   #+BEGIN_SRC clojure
 (defn game-loop [board])
 ;=> setup a game loop which asks for one player input after another and plays out their moves
-  #+END_SRC
-
-  Wait what, X just wrote over O's previous move. Get the referee!!!
-  #+BEGIN_SRC clojure
-(defn reject-illegal-move [board])
-;=> should generate exception or the appropriate msg you want to display to users
   #+END_SRC
 
   We have been playing around until now, but we have not implemented the most important thing.
