@@ -21,11 +21,8 @@
 ;; :c |:o |:x |:o |
 
 ;; Simplest game state - how to represent a blank board as Clojure data?
-(def initial-board {:a1 :none
-:a2                     :none
-:a3                     :none
-;; and                  so    on .
-})
+ Lets try doing this via a map
+(def initial-board ... )
   #+END_SRC
 
   Now lets update the board when a player occupies a slot
