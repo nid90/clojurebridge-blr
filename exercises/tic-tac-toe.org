@@ -1,0 +1,78 @@
+* Write a clojure program to play tic-tac-toe!! XOXO
+
+  The game is played between two players on a 3x3 board.
+
+  - Roles: One player is assigned X and the other O
+  - Play: Depending on what they were assigned, a player puts an X or O in a slot on the board
+  - Win: The players take turns until a winning position is achieved OR the board is filled up.
+
+  Winning Position:
+  A winning position can be a row OR a column or a diagonal filled by the same player.
+
+  Let the games begin!!
+
+  Lets start by modelling the board state
+  #+BEGIN_SRC clojure
+;; Visual representation of the standard 3x3 board.
+;;
+;;      1   2   3
+;; :a |:o |:x |:o |
+;; :b |:x |:o |:x |
+;; :c |:o |:x |:o |
+
+;; Simplest game state - how to represent a blank board as Clojure data?
+ Lets try doing this via a map
+(def initial-board ... )
+  #+END_SRC
+
+  Now lets update the board when a player occupies a slot
+  #+BEGIN_SRC clojure
+(defn update-board [board position player])
+;=> this should return the board with the slot chosen by player updated with the player key
+  #+END_SRC
+
+  Lets play by calling update-board
+  #+BEGIN_SRC clojure
+(update-board initial-board :a1 :x)
+  #+END_SRC
+
+  X has played their hand out, now what about O? How do we bring him into the game?
+  Can we continue playing in the REPL?
+  #+BEGIN_SRC clojure
+;; The game can look like
+ ( -> (initial-board)
+      (update-board :a1 :x)
+      (update-board :a2 :o)
+      (update-board :b2 :x)
+      (update-board :c3 :o)
+      ... and so on)
+  #+END_SRC
+
+  X and O are playing but we can't watch! No audience, no scores!!
+  Lets give the audience what it wants, and print the board with every move played
+  #+BEGIN_SRC clojure
+(defn pretty-print-board [board])
+;=> returns the board itself after printing it on the REPL
+  #+END_SRC
+
+  Wait what, X just wrote over O's previous move. Get the referee!!!
+  #+BEGIN_SRC clojure
+(defn reject-illegal-move [board])
+;=> should generate exception or the appropriate msg you want to display to users
+  #+END_SRC
+
+  A player can update the board, and we see what they played as well.
+  But how are these players getting turns? What if X plays twice in a row.
+  #+BEGIN_SRC clojure
+(defn game-loop [board])
+;=> setup a game loop which asks for one player input after another and plays out their moves
+  #+END_SRC
+
+  We have been playing around until now, but we have not implemented the most important thing.
+  How does a player WIN. Can the game be a draw?
+  #+BEGIN_SRC clojure
+(defn player-won? [board player])
+;=> should return true if a player wins in the given board and false if not
+  #+END_SRC
+
+  I think this tic-tac-toe game looks good to play, lets play a few rounds!!
