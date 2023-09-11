@@ -1,7 +1,8 @@
 * Preface
 ** What is ClojureBridge?
 
-- This workshop is aimed specifically at women. Why? In the past 7
+# TODO: Sandy's intro by Sandy
+- This workshop is aimed specifically at women and non-binary people. Why? In the past 7
   years of my engineering career I have seen the disparity in the
   gender ratio at all the companies I have worked with. In some teams,
   I was the only female developer. In some teams, I was the only
@@ -17,6 +18,7 @@
   databases, regardless of what your classmates and media and even
   fellow engineers think." - aphyr
 
+# Ask Sandy: Do we want to keep this
 - A quick round of thanks before we start. We would like to thank all
   these people and groups for having created great content for clojure
   workshops.
@@ -59,7 +61,7 @@
   predominant of which today are Common Lisp and Scheme.
 
 - Clojure (pronounced "closure") is a new dialect of Lisp created by
-  Rich Hickey. Like Scheme, Clojure is a functional dialect, meaning
+  Rich Hickey. Clojure is a functional dialect, meaning
   that it supports and encourages programming in a "functional style".
   [[./img/rich.jpeg]]
 
@@ -342,7 +344,8 @@ List of basic types:
 2) Strings: text like "hey", "cats are so nice", "ありがとう"
 3) Characters: \a, \b, \c
 
-
+# TODO: def is talking about symbols. how to move symbols to end. can have smaller explanations if we want
+# i dont think we need to move this stuff. underestimating probably
 ** Special data types - symbols and keywords
 *** keywords
 - Clojure has a special type called keyword

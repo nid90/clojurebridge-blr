@@ -9,6 +9,10 @@
    :garden "You are in a beautiful garden. There is a well in front of you."
    :attic "You are in the attic. There is a giant welding torch in the corner."})
 
+(comment "Let's keep track of the wizard's movements.")
+
+(def wizard-location :living-room)
+
 (comment "The edges map contains information about the where and how of each path into/out of that place. Notice how information-rich this one variable is and how it describes all that's  needed to know but not a thing more - Lispers love to create small, concise pieces of code that leave out any fat and are easy to understand just by looking at them.")
 
 (def edges
@@ -27,8 +31,8 @@
                         :garden      [:chain :frog]})
 
 (comment "Given the information above, we intend to:
-1. Describe the location the wizard is at.
-2. Describe the paths from wizard's current location to another given location.
-3. Describe all the paths in and out of wizard's current location
-4. Describe all the objects at wizard's current location
-5. Write a function that ties up all the above functionality")
+1. Describe the paths from wizard's current location to another given location.
+2. Describe all the paths in and out of wizard's current location
+3. Describe all the objects at wizard's current location
+; TODO: elaborate this. how can you do all this in 1 fn:
+4. Write a function that ties up all the above functionality")
