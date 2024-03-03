@@ -1,16 +1,10 @@
 * Preface
 ** What is ClojureBridge?
 
-# TODO: Sandy's intro by Sandy
-- This workshop is aimed specifically at women and non-binary people. Why? In the past 7
-  years of my engineering career I have seen the disparity in the
-  gender ratio at all the companies I have worked with. In some teams,
-  I was the only female developer. In some teams, I was the only
-  female. I have never had a female mentor before. But, I have also
-  seen companies change, grow, become more aware of this issue, and
-  find ways to fix it. This is a small attempt towards that. Getting
-  more females to learn programming, learn Clojure and do awesome
-  things that come with ability to command a computer.
+- This workshop is aimed specifically at women and non-binary people. 
+  This is a small attempt towards that. Getting more females to learn 
+  programming, learn Clojure and do awesome things that come with 
+  ability to command a computer.
 
 - "So before we begin, I want to reinforce that you can program, that
   you can do math, that you can design car suspensions and fire
@@ -18,7 +12,6 @@
   databases, regardless of what your classmates and media and even
   fellow engineers think." - aphyr
 
-# Ask Sandy: Do we want to keep this
 - A quick round of thanks before we start. We would like to thank all
   these people and groups for having created great content for clojure
   workshops.
@@ -31,8 +24,21 @@
 
 - Also, thanks to nilenso, IN/Clojure and ClojureBridge core team.
 
-- https://tinyurl.com/clj-bridge-blr
--> outline.org
+- https://nilenso.com/clojurebridge
+
+** Speakers
+
+*** Soumya Maithani
+Currently working as a senior platform developer at Helpshift, developing
+in Clojure for the past 9 years and hoping to continue for more.
+I love distributed systems, event streaming and exploring new databases.
+In my spare time, I love reading fiction, cooking and am learning football.
+
+*** Sezal Jain
+
+# TODO 
+
+
 * Structure
 ** What is programming
 - Programming is the process of creating a set of instructions that
@@ -109,6 +115,11 @@
 
 - Let's start a REPL. and we can type and evaluate things as we go on
   learning them.
+
+- How to open a repl in VSCode 
+  - Open command using: `ctrl+shift+P` or `cmd+shift+P`
+  - Write `Calva: Start a project REPL`
+  - Select the project and tool accordingly
 
 - As a first thing, type `nil` in your REPL, and see what it returns.
   - `nil` is the most basic value in Clojure, it represents emptiness,
@@ -238,6 +249,25 @@ Evaluate some normal functions in your REPL
 ;; you can even do this!
 (,+ 1 2)
 #+END_SRC
+
+**** Structural Editing
+
+Structural editing is a method of manipulating code based on its syntactic structure, 
+rather than its text representation.
+It allows for operations like moving, wrapping or editing code blocks as discrete units.
+
+Plugins that enable structural editing:
+
+Visual studio code: Calva (https://calva.io/)
+Intellij: Cursive (https://cursive-ide.com/)
+
+Common Paredits for Visual Studio: 
+
+| Action        | Windows                | Linux     | Mac            |
+| ------------- | ---------------------- | --------- | -------------- |
+| Slurp Forward | ctrl+alt+right         | ctrl+alt  | ctrl+opt+right |
+| Barf Forward  | ctrl+alt+left          | ctrl+alt, | ctrl+opt+left  |
+| Raise Exp     |            ctrl+alt+p  ctrl+alt+r                   |
 
 **** Infix vs. prefix notation
 
@@ -434,6 +464,14 @@ List of basic types:
 **** defn
 #+BEGIN_SRC clojure
 (defn same [x] x)
+
+(defn hello-world [name]
+ (str "Hello world " name))
+
+(defn calculate-area
+  [length width]
+  (let [area (* length width)]
+    (str "The area of the rectangle is " area " square units.")))
 #+END_SRC
 
 - Function definitions are composed of five main parts:
@@ -611,7 +649,7 @@ List of basic types:
 - first returns the first item in the collection.
 #+BEGIN_SRC clojure
 (first [5 10 15])
-(nth [5 10 15] 0)
+;; TODO write using nth function?
 ;=> 5
 #+END_SRC
 
